@@ -2,6 +2,7 @@ module Api
   module V1
     class UsersController < ApplicationController
       def index
+        authorize(User)
         render_paginated_collection(
           UserQuery.new(current_user: current_user, params: query_params).run,
           UserSerializer

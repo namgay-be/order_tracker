@@ -10,7 +10,7 @@ module DeviseSanitizer
     devise_parameter_sanitizer.permit(
       :invite,
       keys: %i[
-        email,
+        email
         role_id
       ]
     )

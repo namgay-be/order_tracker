@@ -5,9 +5,5 @@ FactoryBot.define do
     name { Faker::Superhero.name }
     designation { :mr }
     username { Faker::FunnyName.name }
-
-    after(:build) do |user|
-      user.skip_confirmation!
-    end
   end
 end

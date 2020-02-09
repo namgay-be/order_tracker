@@ -9,7 +9,7 @@ describe 'User invitation', type: :request do
       {
         user: {
           email: 'namgay.tenzin@dcpl.bt',
-          role_id: 3
+          role_id: 2
         }
       }
     }
