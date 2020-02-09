@@ -63,3 +63,6 @@ en:
       not_saved:
         one: "1 error prohibited this %{resource} from being saved:"
         other: "%{count} errors prohibited this %{resource} from being saved:"
+  mailers:
+    password_reset:
+      reset_link_sent: 'Password reset link successfully sent'
