@@ -1,6 +1,6 @@
 module Api
   module V1
-    class UsersController < BaseController
+    class UsersController < ApplicationController
       def index
         render_paginated_collection(
           UserQuery.new(current_user: current_user, params: query_params).run,

@@ -13,6 +13,8 @@ class User < ApplicationRecord
   )
 
   include Devise::JWT::RevocationStrategies::JTIMatcher
+  include Klass::User
+
   belongs_to :role, inverse_of: :users
 
   delegate :name, to: :role, prefix: true

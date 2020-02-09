@@ -22,6 +22,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'factory_bot_rails'
   gem 'faker', '~> 1.9.1'
+  gem 'simplecov', require: false
 end
 
 group :development do
@@ -41,3 +42,4 @@ gem 'letter_opener'
 gem 'overcommit'
 gem 'pagy'
 gem 'pundit'
+gem 'cache_crispies', '~> 1.1', '>= 1.1.2'
