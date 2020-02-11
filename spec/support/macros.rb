@@ -20,6 +20,10 @@ def formatted_date(date)
   date.strftime('%d/%m/%Y')
 end
 
+def image_upload
+  fixture_file_upload(Rails.root.join('public', 'default', 'default.jpg'), 'image/jpg')
+end
+
 def load_task(task)
   Rails.application.load_tasks
   Rake::Task[task].execute

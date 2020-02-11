@@ -25,7 +25,9 @@ module DeviseSanitizer
         invitation_token
         name
         username
+        phone
         designation
+        image
       ]
     )
   end

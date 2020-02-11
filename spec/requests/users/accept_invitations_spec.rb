@@ -11,8 +11,10 @@ describe 'User invitation accept', type: :request do
         password_confirmation: 'password',
         invitation_token: user.raw_invitation_token,
         name: 'john',
+        phone: ' 17290332 ',
         username: 'johncena',
-        designation: 'mr'
+        designation: 'mr',
+        image: image_upload
       }
     }
   }

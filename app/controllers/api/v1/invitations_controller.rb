@@ -4,7 +4,7 @@ module Api
       private
 
       def respond_with(resource, _opts = {})
-        render json: resource
+        cache_render UserSerializer, resource
       end
     end
   end

@@ -15,6 +15,7 @@ class User < ApplicationRecord
   include Klass::User
 
   belongs_to :role, inverse_of: :users
+  has_one_attached :image, dependent: :destroy
 
   delegate :name, to: :role, prefix: true
 end
