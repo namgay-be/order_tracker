@@ -8,7 +8,8 @@ class UserSerializer < ApplicationSerializer
     :phone,
     :username,
     :designation,
-    :image_path
+    :image_path,
+    :deleted_at
   )
 
   def image_path

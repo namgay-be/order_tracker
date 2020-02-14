@@ -18,4 +18,6 @@ class User < ApplicationRecord
   has_one_attached :image, dependent: :destroy
 
   delegate :name, to: :role, prefix: true
+
+  default_scope { where(deleted_at: nil) }
 end

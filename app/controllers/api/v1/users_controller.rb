@@ -19,18 +19,26 @@ module Api
         update_user_form(user_updater)
       end
 
+      def soft_delete
+        update_user_form(user_updater)
+      end
+
       private
 
       def user_updater
-        UserUpdater.new(current_user: current_user, params: user_params)
+        UserUpdater.new(current_user: current_user, params: send("#{action_name}_params"))
       end
 
       def user
         @user ||= User.find(params[:id])
       end
 
-      def user_params
+      def update_params
         params.require(:user).permit(:email, :designation, :phone, :name, :username, :image)
+      end
+
+      def soft_delete_params
+        params.require(:user).permit(:deleted_at)
       end
 
       def query_params
