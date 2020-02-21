@@ -54,7 +54,7 @@ describe 'User', type: :request do
             resistant: 'resistant1',
             susceptible: 'susceptible1',
             sample_status: 'status1',
-            seed_status: 'seed1'
+            seed_status: 'under_process'
           }
         }
       }
