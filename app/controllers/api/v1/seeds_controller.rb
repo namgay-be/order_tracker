@@ -5,16 +5,38 @@ module Api
         create_seed_form(seed_creator)
       end
 
-      private
-
-      def seed_creator
-        SeedCreator.new(current_user: current_user, params: create_params)
+      def update
+        update_seed_form(seed_updater)
       end
 
-      def create_params
+      def show
+        cache_render SeedSerializer, seed
+      end
+
+      def destroy
+        seed.destroy!
+        head :no_content
+      end
+
+      private
+
+      def seed
+        @seed ||= Seed.find(params[:id])
+      end
+
+      def seed_updater
+        SeedUpdater.new(current_user: current_user, params: seed_params)
+      end
+
+      def seed_creator
+        SeedCreator.new(current_user: current_user, params: seed_params)
+      end
+
+      def seed_params
         params.require(:seed).permit(
           :type,
           collection_info_attributes: %i[
+            id
             mission_number
             collection_number
             collection_source
@@ -23,6 +45,7 @@ module Api
             collection_date
           ],
           cultivation_info_attributes: %i[
+            id
             nursery_month
             planting_month
             harvesting_month
@@ -32,6 +55,7 @@ module Api
             requires_multiplication
           ],
           donor_field_info_attributes: %i[
+            id
             latitude
             longitude
             altitude
@@ -40,6 +64,7 @@ module Api
             topography
           ],
           donor_info_attributes: %i[
+            id
             donor_name
             house_number
             dzongkhag
@@ -48,6 +73,7 @@ module Api
             village
           ],
           seed_info_attributes: %i[
+            id
             crop_name
             local_name
             local_variety_name

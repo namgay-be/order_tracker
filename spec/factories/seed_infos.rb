@@ -12,6 +12,5 @@ FactoryBot.define do
     resistant { 'resistant1' }
     susceptible { 'susceptible1' }
     sample_status { 'status1' }
-    seed_status { 'seed1' }
   end
 end

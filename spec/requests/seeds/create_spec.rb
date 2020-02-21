@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'User', type: :request do
+describe 'Seed', type: :request do
   let!(:admin) { create(:user, role_id: Role.first.id) }
   let!(:token) { user_token(admin) }
 
