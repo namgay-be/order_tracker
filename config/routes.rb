@@ -11,6 +11,7 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
+      resources :seeds
       resources :users do
         member do
           put :soft_delete
