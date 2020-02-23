@@ -18,6 +18,13 @@ module Api
         head :no_content
       end
 
+      def index
+        render_paginated_collection(
+          SeedsQuery.new(current_user: current_user, params: query_params).run,
+          SeedSerializer
+        )
+      end
+
       private
 
       def seed
@@ -30,6 +37,10 @@ module Api
 
       def seed_creator
         SeedCreator.new(current_user: current_user, params: seed_params)
+      end
+
+      def query_params
+        params.permit(:query, :crop_name, :local_name, :local_variety, :status, :donor, :dzongkhag, :gewog, :classification)
       end
 
       def seed_params
