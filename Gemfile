@@ -32,6 +32,7 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
+gem 'cache_crispies', '~> 1.1', '>= 1.1.2'
 gem 'devise'
 gem 'devise-jwt'
 gem 'devise_invitable'
@@ -41,5 +42,5 @@ gem 'http_accept_language'
 gem 'letter_opener'
 gem 'overcommit'
 gem 'pagy'
+gem 'pg_search'
 gem 'pundit'
-gem 'cache_crispies', '~> 1.1', '>= 1.1.2'
