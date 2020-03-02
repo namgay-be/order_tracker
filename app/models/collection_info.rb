@@ -8,7 +8,10 @@ class CollectionInfo < ApplicationRecord
   pg_search_scope :search_by_name, lambda { |name_part, query|
     {
       against: name_part,
-      query: query
+      query: query,
+      using: {
+        tsearch: { prefix: true }
+      }
     }
   }
 end
