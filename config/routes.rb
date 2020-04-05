@@ -17,6 +17,7 @@ Rails.application.routes.draw do
       resources :cultivation_infos, only: :index
       resources :donor_infos, only: :index
       resources :donor_field_infos, only: :index
+      resources :foreign_seeds
       resources :users do
         member do
           put :soft_delete

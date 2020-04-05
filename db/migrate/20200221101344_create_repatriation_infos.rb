@@ -1,6 +1,7 @@
 class CreateRepatriationInfos < ActiveRecord::Migration[6.0]
   def change
     create_table :repatriation_infos do |t|
+      t.references :foreign_seed, foreign_key: { to_table: :seeds }
       t.string :repatriation_number
       t.datetime :repatriation_date
       t.integer :quantity
