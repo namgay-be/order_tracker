@@ -3,7 +3,18 @@ class SeedSerializer < ApplicationSerializer
   collection_key :seeds
   serialize(
     :id,
-    :type
+    :type,
+    :crop_name,
+    :family,
+    :genus,
+    :species,
+    :sub_texa,
+    :material_type,
+    :classification,
+    :resistant,
+    :susceptible,
+    :seed_status,
+    :characteristics
   )
 
   serialize :collection_info, with: CollectionInfoSerializer

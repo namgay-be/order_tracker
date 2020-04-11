@@ -25,6 +25,11 @@ module Api
         )
       end
 
+      def auto_complete
+        seeds = SeedAutocompleteQuery.new(current_user: current_user, params: auto_complete_params).run
+        cache_render SeedSerializer, seeds
+      end
+
       private
 
       def seed
@@ -43,9 +48,24 @@ module Api
         params.permit(:query, :crop_name, :local_name, :local_variety, :status, :donor, :dzongkhag, :gewog, :classification)
       end
 
+      def auto_complete_params
+        params.permit(:name, :query)
+      end
+
       def seed_params
         params.require(:seed).permit(
           :type,
+          :family,
+          :genus,
+          :species,
+          :sub_texa,
+          :material_type,
+          :classification,
+          :resistant,
+          :susceptible,
+          :crop_name,
+          :seed_status,
+          :characteristics,
           collection_info_attributes: %i[
             id
             mission_number
@@ -85,19 +105,9 @@ module Api
           ],
           seed_info_attributes: %i[
             id
-            crop_name
             local_name
             local_variety_name
-            family
-            genus
-            species
-            sub_texa
-            material_type
-            classification
-            resistant
-            susceptible
             sample_status
-            seed_status
           ]
         )
       end

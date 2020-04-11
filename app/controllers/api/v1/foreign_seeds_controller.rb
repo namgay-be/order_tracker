@@ -34,17 +34,15 @@ module Api
 
       def foreign_seed_params
         params.require(:foreign_seed).permit(
-          foreign_seed_info_attributes: %i[
-            id
-            crop_name
-            genus
-            family
-            species
-            sub_texa
-            material_type
-            classification
-            characteristics
-          ],
+          :id,
+          :crop_name,
+          :genus,
+          :family,
+          :species,
+          :sub_texa,
+          :material_type,
+          :classification,
+          :characteristics,
           repatriation_info_attributes: %i[
             id
             repatriation_number

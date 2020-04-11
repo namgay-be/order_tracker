@@ -4,7 +4,6 @@ describe 'Foreign Seed', type: :request do
   let!(:admin) { create(:user, role_id: Role.first.id) }
   let!(:token) { user_token(admin) }
   let!(:foreign_seed) { create(:foreign_seed) }
-  let!(:foreign_seed_info) { create(:foreign_seed_info, foreign_seed: foreign_seed) }
   let!(:repatriation_info) { create(:repatriation_info, foreign_seed: foreign_seed) }
 
   it 'fetches the foreign seed' do

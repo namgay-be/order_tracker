@@ -3,9 +3,16 @@ class ForeignSeedSerializer < ApplicationSerializer
   collection_key :foreign_seeds
   serialize(
     :id,
-    :type
+    :type,
+    :crop_name,
+    :genus,
+    :family,
+    :species,
+    :sub_texa,
+    :material_type,
+    :classification,
+    :characteristics
   )
 
-  serialize :foreign_seed_info, with: ForeignSeedInfoSerializer
   serialize :repatriation_info, with: RepatriationInfoSerializer
 end

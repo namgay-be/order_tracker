@@ -8,16 +8,14 @@ describe 'Foreign Seed', type: :request do
     let!(:params) {
       {
         foreign_seed: {
-          foreign_seed_info_attributes: {
-            crop_name: 'something',
-            genus: 'some genus',
-            family: 'some family',
-            species: 'some species',
-            sub_texa: 'some sub',
-            material_type: 'some material type',
-            classification: 'some classification',
-            characteristics: 'some characteristics'
-          },
+          crop_name: 'something',
+          genus: 'some genus',
+          family: 'some family',
+          species: 'some species',
+          sub_texa: 'some sub',
+          material_type: 'some material type',
+          classification: 'some classification',
+          characteristics: 'some characteristics',
           repatriation_info_attributes: {
             repatriation_number: 'some number',
             repatriation_date: DateTime.current,

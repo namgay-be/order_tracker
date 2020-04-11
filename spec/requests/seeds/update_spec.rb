@@ -14,6 +14,16 @@ describe 'Seed', type: :request do
     let!(:params) {
       {
         seed: {
+          crop_name: 'crop2',
+          family: 'family2',
+          genus: 'genus2',
+          species: 'species2',
+          sub_texa: 'sub_texa2',
+          material_type: 'material2',
+          classification: 'classification2',
+          resistant: 'resistant2',
+          susceptible: 'susceptible2',
+          seed_status: 'tested',
           collection_info_attributes: {
             id: collection_info.id,
             mission_number: 'mission2',
@@ -53,19 +63,9 @@ describe 'Seed', type: :request do
           },
           seed_info_attributes: {
             id: seed_info.id,
-            crop_name: 'crop2',
             local_name: 'local2',
             local_variety_name: 'variety2',
-            family: 'family2',
-            genus: 'genus2',
-            species: 'species2',
-            sub_texa: 'sub_texa2',
-            material_type: 'material2',
-            classification: 'classification2',
-            resistant: 'resistant2',
-            susceptible: 'susceptible2',
-            sample_status: 'status2',
-            seed_status: 'tested'
+            sample_status: 'status2'
           }
         }
       }

@@ -7,11 +7,11 @@ module Klass
         joins(:seed_info, :donor_info, :collection_info).where(
           "CONCAT_WS(
             ' ',
-            seed_infos.crop_name,
+            seeds.crop_name,
             seed_infos.local_name,
             seed_infos.local_variety_name,
-            seed_infos.classification,
-            seed_infos.seed_status,
+            seeds.classification,
+            seeds.seed_status,
             donor_infos.dzongkhag,
             donor_infos.gewog,
             donor_infos.village,

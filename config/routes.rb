@@ -11,12 +11,15 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
-      resources :seeds
+      resources :seeds do
+        get :auto_complete, on: :collection
+      end
       resources :seed_infos, only: :index
       resources :collection_infos, only: :index
       resources :cultivation_infos, only: :index
       resources :donor_infos, only: :index
       resources :donor_field_infos, only: :index
+      resources :repatriation_infos, only: :index
       resources :foreign_seeds
       resources :users do
         member do

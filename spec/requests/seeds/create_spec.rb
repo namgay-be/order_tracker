@@ -8,6 +8,16 @@ describe 'Seed', type: :request do
     let!(:params) {
       {
         seed: {
+          crop_name: 'crop1',
+          family: 'family1',
+          genus: 'genus1',
+          species: 'species1',
+          sub_texa: 'sub_texa1',
+          material_type: 'material1',
+          classification: 'classification1',
+          resistant: 'resistant1',
+          susceptible: 'susceptible1',
+          seed_status: 'under_process',
           collection_info_attributes: {
             mission_number: 'mission1',
             collection_number: 'number1',
@@ -42,19 +52,9 @@ describe 'Seed', type: :request do
             village: 'village1'
           },
           seed_info_attributes: {
-            crop_name: 'crop1',
             local_name: 'local1',
             local_variety_name: 'variety1',
-            family: 'family1',
-            genus: 'genus1',
-            species: 'species1',
-            sub_texa: 'sub_texa1',
-            material_type: 'material1',
-            classification: 'classification1',
-            resistant: 'resistant1',
-            susceptible: 'susceptible1',
-            sample_status: 'status1',
-            seed_status: 'under_process'
+            sample_status: 'status1'
           }
         }
       }

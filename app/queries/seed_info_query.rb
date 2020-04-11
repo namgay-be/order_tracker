@@ -2,19 +2,9 @@ class SeedInfoQuery < ApplicationQuery
   attr_accessor :name, :query
 
   PERMITTED_ATTRIBUTES = %w[
-      crop_name
       local_name
       local_variety_name
-      family
-      genus
-      species
-      sub_texa
-      material_type
-      classification
-      resistant
-      susceptible
       sample_status
-      seed_status
      ].freeze
 
   def run
@@ -35,6 +25,6 @@ class SeedInfoQuery < ApplicationQuery
   end
 
   def attribute_name
-    name.presence_in(PERMITTED_ATTRIBUTES) || :crop_name
+    name.presence_in(PERMITTED_ATTRIBUTES) || :local_name
   end
 end
