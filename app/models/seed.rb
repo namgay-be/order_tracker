@@ -7,6 +7,8 @@ class Seed < ApplicationRecord
   has_one :donor_info, inverse_of: :seed, dependent: :destroy
   has_one :seed_info, inverse_of: :seed, dependent: :destroy
 
+  has_many :test_details, inverse_of: :seed, dependent: :destroy
+
   include Klass::Seed
 
   accepts_nested_attributes_for(

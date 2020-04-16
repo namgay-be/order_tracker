@@ -22,4 +22,5 @@ class SeedSerializer < ApplicationSerializer
   serialize :donor_info, with: DonorInfoSerializer
   serialize :donor_field_info, with: DonorFieldInfoSerializer
   serialize :seed_info, with: SeedInfoSerializer
+  serialize :test_details, with: TestDetailSerializer
 end
