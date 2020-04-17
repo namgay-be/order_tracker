@@ -3,6 +3,6 @@ class SeedCreator < ApplicationForm
 
   def create
     @seed = Seed.new(params)
-    seed.save!
+    seed.save
   end
 end

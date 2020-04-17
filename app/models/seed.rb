@@ -1,5 +1,7 @@
 class Seed < ApplicationRecord
   include PgSearch::Model
+  include Klass::Seed
+  include AASM
 
   has_one :collection_info, inverse_of: :seed, dependent: :destroy
   has_one :cultivation_info, inverse_of: :seed, dependent: :destroy
@@ -8,8 +10,6 @@ class Seed < ApplicationRecord
   has_one :seed_info, inverse_of: :seed, dependent: :destroy
 
   has_many :test_details, inverse_of: :seed, dependent: :destroy
-
-  include Klass::Seed
 
   accepts_nested_attributes_for(
     :seed_info,
@@ -23,7 +23,6 @@ class Seed < ApplicationRecord
   validates :classification, :crop_name, presence: true
 
   enum seed_status: { under_process: 0, tested: 5, transferred: 10, rejected: 20 }
-
 
   scope :by_crop_name, ->(crop_name) { where(crop_name: crop_name) }
   scope :by_local_name, ->(local_name) { joins(:seed_info).where(seed_infos: { local_name: local_name }) }
@@ -43,4 +42,23 @@ class Seed < ApplicationRecord
       }
     }
   }
+
+  aasm column: 'seed_status', enum: true, whiny_persistence: false do
+    state :under_process, initial: true
+    state :tested
+    state :transferred
+    state :rejected
+
+    event :test do
+      transitions from: :under_process, to: :tested
+    end
+
+    event :transfer do
+      transitions from: :tested, to: :transferred
+    end
+
+    event :reject do
+      transitions from: :tested, to: :rejected
+    end
+  end
 end

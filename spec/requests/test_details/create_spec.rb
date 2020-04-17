@@ -29,6 +29,7 @@ describe 'Test Details', type: :request do
       post api_v1_test_details_path, params: params, headers: header_params(token: token)
       expect(status).to eq(200)
       expect(json.dig(:test_detail, :germination_rate).to_f).to eq(TestDetail.first.germination_rate.to_f)
+      expect(seed.reload.seed_status).to eq('tested')
     end
   end
 end
