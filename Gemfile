@@ -32,6 +32,7 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
+gem 'aasm', '~> 4.11', '>= 4.11.1'
 gem 'cache_crispies', '~> 1.1', '>= 1.1.2'
 gem 'devise'
 gem 'devise-jwt'
