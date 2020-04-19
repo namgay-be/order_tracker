@@ -3,7 +3,7 @@ require 'rails_helper'
 describe 'Seed', type: :request do
   let!(:admin) { create(:user, role_id: Role.first.id) }
   let!(:token) { user_token(admin) }
-  let!(:seed_1) { create(:seed, crop_name: 'croppo') }
+  let!(:seed_1) { create(:seed, crop_name: 'croppo', requires_multiplication: true) }
   let!(:collection_info) { create(:collection_info, seed: seed_1) }
   let!(:donor_field_info) { create(:donor_field_info, seed: seed_1) }
   let!(:cultivation_info) { create(:cultivation_info, seed: seed_1) }
@@ -127,6 +127,12 @@ describe 'Seed', type: :request do
       get api_v1_seeds_path, params: { minimum_altitude: 50.05 }, headers: header_params(token: token)
       expect(status).to eq(200)
       expect(json.dig(:seeds).size).to eq(4)
+    end
+
+    it 'filters by requires multiplication flag', requires_multiplication: true do
+      get api_v1_seeds_path, params: { requires_multiplication: true }, headers: header_params(token: token)
+      expect(status).to eq(200)
+      expect(json.dig(:seeds).size).to eq(1)
     end
   end
 end

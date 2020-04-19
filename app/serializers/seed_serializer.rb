@@ -14,7 +14,8 @@ class SeedSerializer < ApplicationSerializer
     :resistant,
     :susceptible,
     :seed_status,
-    :characteristics
+    :characteristics,
+    :requires_multiplication
   )
 
   serialize :collection_info, with: CollectionInfoSerializer

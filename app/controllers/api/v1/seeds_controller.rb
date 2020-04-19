@@ -57,7 +57,8 @@ module Api
           :classification,
           :type,
           :minimum_altitude,
-          :maximum_altitude
+          :maximum_altitude,
+          :requires_multiplication
         )
       end
 
@@ -79,6 +80,7 @@ module Api
           :crop_name,
           :seed_status,
           :characteristics,
+          :requires_multiplication,
           collection_info_attributes: %i[
             id
             mission_number

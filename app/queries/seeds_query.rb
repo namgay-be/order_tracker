@@ -11,7 +11,8 @@ class SeedsQuery < ApplicationQuery
     :classification,
     :type,
     :minimum_altitude,
-    :maximum_altitude
+    :maximum_altitude,
+    :requires_multiplication
   )
 
   def run
@@ -27,6 +28,7 @@ class SeedsQuery < ApplicationQuery
       .yield_self { |seeds| fetch_by_classification(seeds) }
       .yield_self { |seeds| fetch_by_minimum_altitude(seeds) }
       .yield_self { |seeds| fetch_by_maximum_altitude(seeds) }
+      .yield_self { |seeds| fetch_by_requires_multiplication(seeds) }
       .search(query)
   end
 
@@ -34,6 +36,12 @@ class SeedsQuery < ApplicationQuery
 
   def seeds
     Seed.includes(:seed_info, :donor_info)
+  end
+
+  def fetch_by_requires_multiplication(seeds)
+    return seeds if requires_multiplication.nil?
+
+    seeds.by_requires_multiplication(requires_multiplication)
   end
 
   def fetch_by_minimum_altitude(seeds)

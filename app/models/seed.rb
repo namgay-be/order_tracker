@@ -37,6 +37,7 @@ class Seed < ApplicationRecord
   scope :by_gewog, ->(gewog) { joins(:donor_info).where(donor_infos: {gewog: gewog}) }
   scope :by_minimum_altitude, ->(altitude) { joins(:donor_field_info).where('donor_field_infos.altitude > :q', q: altitude) }
   scope :by_maximum_altitude, ->(altitude) { joins(:donor_field_info).where('donor_field_infos.altitude < :q', q: altitude) }
+  scope :by_requires_multiplication, ->(flag) { where(requires_multiplication: flag) }
 
   pg_search_scope :search_by_name, lambda { |name_part, query|
     {
