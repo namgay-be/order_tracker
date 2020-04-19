@@ -1,5 +1,18 @@
 class SeedsQuery < ApplicationQuery
-  attr_accessor :query, :crop_name, :local_name, :local_variety, :status, :donor, :dzongkhag, :gewog, :classification, :type
+  attr_accessor(
+    :query,
+    :crop_name,
+    :local_name,
+    :local_variety,
+    :status,
+    :donor,
+    :dzongkhag,
+    :gewog,
+    :classification,
+    :type,
+    :minimum_altitude,
+    :maximum_altitude
+  )
 
   def run
     seeds
@@ -11,7 +24,9 @@ class SeedsQuery < ApplicationQuery
       .yield_self { |seeds| fetch_by_donor_name(seeds) }
       .yield_self { |seeds| fetch_by_dzongkhag(seeds) }
       .yield_self { |seeds| fetch_by_gewog(seeds) }
-      .yield_self { |seeds| fetch_by_classification(seeds)}
+      .yield_self { |seeds| fetch_by_classification(seeds) }
+      .yield_self { |seeds| fetch_by_minimum_altitude(seeds) }
+      .yield_self { |seeds| fetch_by_maximum_altitude(seeds) }
       .search(query)
   end
 
@@ -19,6 +34,18 @@ class SeedsQuery < ApplicationQuery
 
   def seeds
     Seed.includes(:seed_info, :donor_info)
+  end
+
+  def fetch_by_minimum_altitude(seeds)
+    return seeds if minimum_altitude.blank?
+
+    seeds.by_minimum_altitude(minimum_altitude)
+  end
+
+  def fetch_by_maximum_altitude(seeds)
+    return seeds if maximum_altitude.blank?
+
+    seeds.by_maximum_altitude(maximum_altitude)
   end
 
   def fetch_by_type(seeds)

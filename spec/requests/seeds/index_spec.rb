@@ -12,7 +12,7 @@ describe 'Seed', type: :request do
 
   let!(:seed_2) { create(:seed, classification: 'something') }
   let!(:collection_info_2) { create(:collection_info, collection_number: 'new_number', seed: seed_2) }
-  let!(:donor_field_info_2) { create(:donor_field_info, seed: seed_2) }
+  let!(:donor_field_info_2) { create(:donor_field_info, seed: seed_2, altitude: 22.3) }
   let!(:cultivation_info_2) { create(:cultivation_info, seed: seed_2) }
   let!(:donor_info_2) { create(:donor_info, seed: seed_2) }
   let!(:seed_info_2) { create(:seed_info, seed: seed_2) }
@@ -114,6 +114,19 @@ describe 'Seed', type: :request do
       get api_v1_seeds_path, params: { type: 'ForeignSeed' }, headers: header_params(token: token)
       expect(status).to eq(200)
       expect(json.dig(:seeds).size).to eq(0)
+    end
+
+    it 'filters by maximum altitude', maximum_altitude: true do
+      get api_v1_seeds_path, params: { maximum_altitude: 50.05 }, headers: header_params(token: token)
+      expect(status).to eq(200)
+      expect(json.dig(:seeds).size).to eq(1)
+      expect(json.dig(:seeds, 0, :id)).to eq(seed_2.id)
+    end
+
+    it 'filters by minimum altitude', minimum_altitude: true do
+      get api_v1_seeds_path, params: { minimum_altitude: 50.05 }, headers: header_params(token: token)
+      expect(status).to eq(200)
+      expect(json.dig(:seeds).size).to eq(4)
     end
   end
 end

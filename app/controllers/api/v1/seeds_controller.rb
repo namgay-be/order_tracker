@@ -55,7 +55,9 @@ module Api
           :dzongkhag,
           :gewog,
           :classification,
-          :type
+          :type,
+          :minimum_altitude,
+          :maximum_altitude
         )
       end
 
