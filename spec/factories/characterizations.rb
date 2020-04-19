@@ -1,5 +1,6 @@
 FactoryBot.define do
   factory :characterization do
-    gene_bank { nil }
+    weight { 10.3 }
+    packets { 20 }
   end
 end

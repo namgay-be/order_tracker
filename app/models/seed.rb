@@ -21,7 +21,7 @@ class Seed < ApplicationRecord
     allow_destroy: true
   )
 
-  validates :classification, :crop_name, presence: true
+  # validates :classification, :crop_name, presence: true
 
   enum seed_status: { under_process: 0, tested: 5, transferred: 10, rejected: 20 }
 

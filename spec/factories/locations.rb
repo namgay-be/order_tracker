@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :location do
-    locatable { nil }
+    name { 'Antarctica' }
   end
 end

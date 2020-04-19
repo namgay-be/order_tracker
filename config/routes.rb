@@ -22,6 +22,7 @@ Rails.application.routes.draw do
       resources :repatriation_infos, only: :index
       resources :foreign_seeds
       resources :test_details
+      resources :gene_banks
       resources :users do
         member do
           put :soft_delete
