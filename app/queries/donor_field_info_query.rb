@@ -5,7 +5,7 @@ class DonorFieldInfoQuery < ApplicationQuery
     latitude
     longitude
     altitude
-    soil_culture
+    soil_color
     soil_texture
     topography
    ].freeze
@@ -28,6 +28,6 @@ class DonorFieldInfoQuery < ApplicationQuery
   end
 
   def attribute_name
-    name.presence_in(PERMITTED_ATTRIBUTES) || :soil_culture
+    name.presence_in(PERMITTED_ATTRIBUTES) || :soil_color
   end
 end

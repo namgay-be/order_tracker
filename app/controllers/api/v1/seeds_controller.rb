@@ -45,7 +45,18 @@ module Api
       end
 
       def query_params
-        params.permit(:query, :crop_name, :local_name, :local_variety, :status, :donor, :dzongkhag, :gewog, :classification)
+        params.permit(
+          :query,
+          :crop_name,
+          :local_name,
+          :local_variety,
+          :status,
+          :donor,
+          :dzongkhag,
+          :gewog,
+          :classification,
+          :type
+        )
       end
 
       def auto_complete_params
@@ -90,7 +101,7 @@ module Api
             latitude
             longitude
             altitude
-            soil_culture
+            soil_color
             soil_texture
             topography
           ],

@@ -1,0 +1,2 @@
+class Cryo < Seed
+end

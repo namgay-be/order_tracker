@@ -48,7 +48,7 @@ describe 'Seed', type: :request do
             latitude: 'new asdfkj',
             longitude: 'new 23423gf',
             altitude: 'new 213sfsg',
-            soil_culture: 'new culture2',
+            soil_color: 'new culture2',
             soil_texture: 'new texture2',
             topography: 'topography2',
           },

@@ -8,6 +8,7 @@ class Seed < ApplicationRecord
   has_one :donor_field_info, inverse_of: :seed, dependent: :destroy
   has_one :donor_info, inverse_of: :seed, dependent: :destroy
   has_one :seed_info, inverse_of: :seed, dependent: :destroy
+  has_one :gene_bank, inverse_of: :seed
 
   has_many :test_details, inverse_of: :seed, dependent: :destroy
 
@@ -24,6 +25,8 @@ class Seed < ApplicationRecord
 
   enum seed_status: { under_process: 0, tested: 5, transferred: 10, rejected: 20 }
 
+  scope :local, -> { where.not(type: ['Cryo', 'ForeignSeed']) }
+  scope :by_type, ->(type) { where(type: type) }
   scope :by_crop_name, ->(crop_name) { where(crop_name: crop_name) }
   scope :by_local_name, ->(local_name) { joins(:seed_info).where(seed_infos: { local_name: local_name }) }
   scope :by_local_variety, ->(local_variety) { joins(:seed_info).where(seed_infos: { local_variety_name: local_variety }) }

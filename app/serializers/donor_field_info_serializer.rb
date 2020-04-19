@@ -5,7 +5,7 @@ class DonorFieldInfoSerializer < ApplicationSerializer
     :latitude,
     :longitude,
     :altitude,
-    :soil_culture,
+    :soil_color,
     :soil_texture,
     :topography,
   )

@@ -1,8 +1,9 @@
 class SeedsQuery < ApplicationQuery
-  attr_accessor :query, :crop_name, :local_name, :local_variety, :status, :donor, :dzongkhag, :gewog, :classification
+  attr_accessor :query, :crop_name, :local_name, :local_variety, :status, :donor, :dzongkhag, :gewog, :classification, :type
 
   def run
     seeds
+      .yield_self { |seeds| fetch_by_type(seeds) }
       .yield_self { |seeds| fetch_by_crop_name(seeds) }
       .yield_self { |seeds| fetch_by_local_name(seeds) }
       .yield_self { |seeds| fetch_by_local_variety(seeds) }
@@ -18,6 +19,12 @@ class SeedsQuery < ApplicationQuery
 
   def seeds
     Seed.includes(:seed_info, :donor_info)
+  end
+
+  def fetch_by_type(seeds)
+    return seeds if type.blank?
+
+    type == 'Seed' ? seeds.local : seeds.by_type(type)
   end
 
   def fetch_by_crop_name(seeds)
