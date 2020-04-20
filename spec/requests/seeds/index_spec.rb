@@ -38,6 +38,12 @@ describe 'Seed', type: :request do
   let!(:donor_info_5) { create(:donor_info, donor_name: 'john', seed: seed_5) }
   let!(:seed_info_5) { create(:seed_info, seed: seed_5) }
 
+  let!(:seed_6) { create(:foreign_seed) }
+  let!(:repatriation_info) { create(:repatriation_info, foreign_seed: seed_6, repatriation_number: '101') }
+
+  let!(:seed_7) { create(:foreign_seed) }
+  let!(:repatriation_info_2) { create(:repatriation_info, foreign_seed: seed_7, donor_name: 'namgay') }
+
   context 'with search queries' do
     it 'fetches seed info with crop name' do
       get api_v1_seeds_path, params: { query: 'croppo' }, headers: header_params(token: token)
@@ -51,9 +57,15 @@ describe 'Seed', type: :request do
       expect(status).to eq(200)
       expect(json.dig(:seeds).size).to eq(4)
     end
+
+    it 'fetches seed info with repatriation number', new_search: true do
+      get api_v1_seeds_path, params: { query: '101', type: 'ForeignSeed' }, headers: header_params(token: token)
+      expect(status).to eq(200)
+      expect(json.dig(:seeds).size).to eq(1)
+    end
   end
 
-  context 'with filters' do
+  context 'with filters for local seeds' do
     it 'filters by crop name', crop: true do
       get api_v1_seeds_path, params: { crop_name: 'croppo' }, headers: header_params(token: token)
       expect(status).to eq(200)
@@ -113,7 +125,7 @@ describe 'Seed', type: :request do
     it 'filters by type of seed', seed_type: true do
       get api_v1_seeds_path, params: { type: 'ForeignSeed' }, headers: header_params(token: token)
       expect(status).to eq(200)
-      expect(json.dig(:seeds).size).to eq(0)
+      expect(json.dig(:seeds).size).to eq(2)
     end
 
     it 'filters by maximum altitude', maximum_altitude: true do
@@ -131,6 +143,15 @@ describe 'Seed', type: :request do
 
     it 'filters by requires multiplication flag', requires_multiplication: true do
       get api_v1_seeds_path, params: { requires_multiplication: true }, headers: header_params(token: token)
+      expect(status).to eq(200)
+      expect(json.dig(:seeds).size).to eq(1)
+    end
+  end
+
+  context 'with filters for foreign seeds' do
+    it 'filters by donor name', foreign_donor: true do
+      get api_v1_seeds_path, params: { donor: 'namgay', type: 'ForeignSeed' }, headers: header_params(token: token)
+      binding.pry
       expect(status).to eq(200)
       expect(json.dig(:seeds).size).to eq(1)
     end

@@ -1,6 +1,5 @@
 FactoryBot.define do
   factory :foreign_seed do
-    type { 'ForeignSeed' }
     crop_name { 'foreign crop' }
     genus { 'foreign genus' }
     family { 'foreign family' }

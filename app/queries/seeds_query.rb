@@ -1,4 +1,6 @@
 class SeedsQuery < ApplicationQuery
+  SEED_TYPES = %w[Seed ForeignSeed Cryo].freeze
+
   attr_accessor(
     :query,
     :crop_name,
@@ -16,26 +18,49 @@ class SeedsQuery < ApplicationQuery
   )
 
   def run
-    seeds
-      .yield_self { |seeds| fetch_by_type(seeds) }
-      .yield_self { |seeds| fetch_by_crop_name(seeds) }
-      .yield_self { |seeds| fetch_by_local_name(seeds) }
-      .yield_self { |seeds| fetch_by_local_variety(seeds) }
-      .yield_self { |seeds| fetch_by_status(seeds) }
-      .yield_self { |seeds| fetch_by_donor_name(seeds) }
-      .yield_self { |seeds| fetch_by_dzongkhag(seeds) }
-      .yield_self { |seeds| fetch_by_gewog(seeds) }
-      .yield_self { |seeds| fetch_by_classification(seeds) }
-      .yield_self { |seeds| fetch_by_minimum_altitude(seeds) }
-      .yield_self { |seeds| fetch_by_maximum_altitude(seeds) }
-      .yield_self { |seeds| fetch_by_requires_multiplication(seeds) }
-      .search(query)
+    seed_type == 'ForeignSeed' ? list_foreign_seeds : list_local_seeds
   end
 
   private
 
-  def seeds
-    Seed.includes(:seed_info, :donor_info)
+  def list_local_seeds
+    local_seeds
+      .then { |seeds| fetch_by_crop_name(seeds) }
+      .then { |seeds| fetch_by_local_variety(seeds) }
+      .then { |seeds| fetch_by_local_name(seeds) }
+      .then { |seeds| fetch_by_status(seeds) }
+      .then { |seeds| fetch_by_donor_name(seeds) }
+      .then { |seeds| fetch_by_dzongkhag(seeds) }
+      .then { |seeds| fetch_by_gewog(seeds) }
+      .then { |seeds| fetch_by_classification(seeds) }
+      .then { |seeds| fetch_by_minimum_altitude(seeds) }
+      .then { |seeds| fetch_by_maximum_altitude(seeds) }
+      .then { |seeds| fetch_by_requires_multiplication(seeds) }
+      .search(query)
+  end
+
+  def list_foreign_seeds
+    foreign_seeds
+      .then { |seeds| fetch_by_crop_name(seeds) }
+      .then { |seeds| fetch_by_status(seeds) }
+      .then { |seeds| fetch_by_donor_name(seeds) }
+      .then { |seeds| fetch_by_classification(seeds) }
+      .then { |seeds| fetch_by_requires_multiplication(seeds) }
+      .search(query)
+  end
+
+  def local_seeds
+    Seed.includes(
+      :seed_info,
+      :donor_info,
+      :donor_field_info,
+      :cultivation_info,
+      :collection_info
+    ).local
+  end
+
+  def foreign_seeds
+    ForeignSeed.includes(:repatriation_info)
   end
 
   def fetch_by_requires_multiplication(seeds)
@@ -54,12 +79,6 @@ class SeedsQuery < ApplicationQuery
     return seeds if maximum_altitude.blank?
 
     seeds.by_maximum_altitude(maximum_altitude)
-  end
-
-  def fetch_by_type(seeds)
-    return seeds if type.blank?
-
-    type == 'Seed' ? seeds.local : seeds.by_type(type)
   end
 
   def fetch_by_crop_name(seeds)
@@ -108,5 +127,9 @@ class SeedsQuery < ApplicationQuery
     return seeds if classification.blank?
 
     seeds.by_classification(classification)
+  end
+
+  def seed_type
+    type.presence_in(SEED_TYPES) || 'Seed'
   end
 end

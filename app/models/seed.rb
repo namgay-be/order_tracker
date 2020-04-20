@@ -25,7 +25,7 @@ class Seed < ApplicationRecord
 
   enum seed_status: {under_process: 0, tested: 5, transferred: 10, rejected: 20}
 
-  scope :local, -> { where.not(type: ['Cryo', 'ForeignSeed']) }
+  scope :local, -> { where(type: nil) }
   scope :by_type, ->(type) { where(type: type) }
   scope :by_crop_name, ->(crop_name) { where(crop_name: crop_name) }
   scope :by_local_name, ->(local_name) { joins(:seed_info).where(seed_infos: {local_name: local_name}) }
