@@ -11,6 +11,7 @@ class Seed < ApplicationRecord
   has_one :gene_bank, inverse_of: :seed
 
   has_many :test_details, inverse_of: :seed, dependent: :destroy
+  has_many :distribution_infos, inverse_of: :seed, dependent: :nullify
 
   accepts_nested_attributes_for(
     :seed_info,

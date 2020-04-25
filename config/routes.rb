@@ -28,6 +28,8 @@ Rails.application.routes.draw do
           put :soft_delete
         end
       end
+      resources :customers
+      resources :distribution_infos
     end
   end
 end
