@@ -10,4 +10,8 @@ class DistributionInfo < ApplicationRecord
     rest: 4,
     characterization: 5
   }
+
+  validates_presence_of :supplied_date, :requested_date, :package_type, :purpose, :quantity
+  validates :quantity, distribution: true
+  validates_numericality_of :quantity, greater_than: 0
 end

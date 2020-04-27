@@ -14,11 +14,5 @@ class GeneBank < ApplicationRecord
     allow_destroy: true
   )
 
-  validates_presence_of(
-    :packaging_date,
-    :base_collection,
-    :active_collection,
-    :characterization,
-    :duplicate
-  )
+  validates_presence_of :packaging_date
 end

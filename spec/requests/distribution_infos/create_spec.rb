@@ -31,6 +31,31 @@ describe 'Distribution Info', type: :request do
     it 'creates a distribution info' do
       post api_v1_distribution_infos_path, params: params, headers: header_params(token: token)
       expect(status).to eq(200)
+      expect(json.dig(:distribution_info, :quantity)).to eq(11)
+      expect(duplicate.reload.packets).to eq(9)
+    end
+  end
+
+  context 'with invalid params' do
+    let!(:params) do
+      {
+        distribution_info: {
+          customer_id: customer.id,
+          seed_id: seed.id,
+          requested_date: 1.day.ago,
+          supplied_date: 1.day.from_now,
+          package_type: :duplicate,
+          quantity: 31,
+          purpose: 'Some purpose',
+          remarks: 'Some remarks'
+        }
+      }
+    end
+
+    it 'throws errors' do
+      post api_v1_distribution_infos_path, params: params, headers: header_params(token: token)
+      expect(status).to eq(422)
+      expect(json.dig(:errors, 0)).to eq('Quantity entered is more than the available packets for the packet type')
     end
   end
 end

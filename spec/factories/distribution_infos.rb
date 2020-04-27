@@ -3,5 +3,6 @@ FactoryBot.define do
     requested_date { DateTime.current }
     supplied_date { DateTime.current }
     quantity { 10 }
+    purpose { 'Some purpose' }
   end
 end

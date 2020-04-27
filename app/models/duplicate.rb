@@ -5,5 +5,5 @@ class Duplicate < ApplicationRecord
 
   accepts_nested_attributes_for :locations, allow_destroy: true
 
-  validates_presence_of :packets, :weight, :locations
+  validates_presence_of :packets, :weight
 end

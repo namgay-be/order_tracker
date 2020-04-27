@@ -5,5 +5,5 @@ class Characterization < ApplicationRecord
 
   accepts_nested_attributes_for :location, allow_destroy: true
 
-  validates_presence_of :weight, :packets, :location
+  validates_presence_of :weight, :packets
 end

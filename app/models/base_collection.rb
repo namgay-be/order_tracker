@@ -11,7 +11,6 @@ class BaseCollection < ApplicationRecord
     :germination_packets,
     :germination_weight,
     :regeneration_packets,
-    :regeneration_weight,
-    :locations
+    :regeneration_weight
   )
 end

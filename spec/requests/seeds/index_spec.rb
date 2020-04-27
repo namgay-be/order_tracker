@@ -151,7 +151,6 @@ describe 'Seed', type: :request do
   context 'with filters for foreign seeds' do
     it 'filters by donor name', foreign_donor: true do
       get api_v1_seeds_path, params: { donor: 'namgay', type: 'ForeignSeed' }, headers: header_params(token: token)
-      binding.pry
       expect(status).to eq(200)
       expect(json.dig(:seeds).size).to eq(1)
     end

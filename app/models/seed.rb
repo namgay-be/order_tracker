@@ -40,6 +40,14 @@ class Seed < ApplicationRecord
   scope :by_maximum_altitude, ->(altitude) { joins(:donor_field_info).where('donor_field_infos.altitude < :q', q: altitude) }
   scope :by_requires_multiplication, ->(flag) { where(requires_multiplication: flag) }
 
+  delegate(
+    :active_collection,
+    :base_collection,
+    :characterization,
+    :duplicate,
+    to: :gene_bank
+  )
+
   pg_search_scope :search_by_name, lambda { |name_part, query|
     {
       against: name_part,
