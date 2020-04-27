@@ -4,4 +4,6 @@ class Duplicate < ApplicationRecord
   has_many :locations, as: :locatable, dependent: :destroy
 
   accepts_nested_attributes_for :locations, allow_destroy: true
+
+  validates_presence_of :packets, :weight, :locations
 end

@@ -4,4 +4,14 @@ class BaseCollection < ApplicationRecord
   has_many :locations, as: :locatable, dependent: :destroy
 
   accepts_nested_attributes_for :locations, allow_destroy: true
+
+  validates_presence_of(
+    :rest_packets,
+    :rest_weight,
+    :germination_packets,
+    :germination_weight,
+    :regeneration_packets,
+    :regeneration_weight,
+    :locations
+  )
 end

@@ -1,0 +1,2 @@
+class CryoSerializer < SeedSerializer
+end
