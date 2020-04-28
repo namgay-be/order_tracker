@@ -17,7 +17,7 @@ describe 'Customer', type: :request do
 
   context 'with search filters' do
     it 'lists all customers' do
-      get api_v1_customers_path, params: { query: 'CUS_10'}, headers: header_params(token: token)
+      get api_v1_customers_path, params: { query: 'new'}, headers: header_params(token: token)
       expect(status).to eq(200)
       expect(json.dig(:customers).size).to eq(1)
     end

@@ -5,6 +5,6 @@ class Customer < ApplicationRecord
   validates :cust_id, uniqueness: true
 
   def self.search(query)
-    where('cust_id ILIKE :query', query: "#{query&.squish}%")
+    where('CONCAT_WS(cust_id, name) ILIKE :query', query: "#{query&.squish}%")
   end
 end
