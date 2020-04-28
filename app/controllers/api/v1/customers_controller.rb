@@ -42,7 +42,7 @@ module Api
           :id,
           :name,
           :designation,
-          :organization,
+          :organisation,
           :status,
           :address
         )
