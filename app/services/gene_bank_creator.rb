@@ -4,11 +4,23 @@ class GeneBankCreator < ApplicationForm
   def create
     @gene_bank = GeneBank.new(params)
     @gene_bank.save.tap do |result|
-      result && transfer_seed && generate_accession_number
+      result && track_count && generate_accession_number && transfer_seed
     end
   end
 
   private
+
+  def track_count
+    PacketCount.create(
+      gene_bank_id: gene_bank.id,
+      germination_count: gene_bank.germination_packets,
+      regeneration_count: gene_bank.regeneration_packets,
+      rest_count: gene_bank.rest_packets,
+      active_collection_count: gene_bank.active_collection_packets,
+      characterization_count: gene_bank.characterization_packets,
+      duplicate_count: gene_bank.duplicate_packets
+    )
+  end
 
   def generate_accession_number
     return unless gene_bank.accession_number.nil?

@@ -17,7 +17,7 @@ module Api
       end
 
       def destroy
-        distribution_info.destroy
+        DistributionInfoDestroyer.new(distribution_info).run
         head :no_content
       end
 

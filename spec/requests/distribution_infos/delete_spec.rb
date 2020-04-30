@@ -11,10 +11,17 @@ describe 'Distribution Info', type: :request do
   let!(:location_1) { create(:location, locatable: base_collection) }
   let!(:characterization) { create(:characterization, gene_bank: gene_bank) }
   let!(:duplicate) { create(:duplicate, gene_bank: gene_bank) }
-  let!(:distribution_info) { create(:distribution_info, customer: customer, seed: seed) }
+  let!(:distribution_info) { create(
+    :distribution_info,
+    customer: customer,
+    seed: seed,
+    package_type: :duplicate
+    )
+  }
 
   it 'deletes a distribution info' do
     delete api_v1_distribution_info_path(distribution_info), params: {}, headers: header_params(token: token)
     expect(status).to eq(204)
+    expect(seed.reload.duplicate.packets).to eq(30)
   end
 end

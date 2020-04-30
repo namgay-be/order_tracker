@@ -61,6 +61,8 @@ describe 'GeneBank', type: :request do
       expect(json.dig(:gene_bank, :active_collection)).to be_present
       expect(json.dig(:gene_bank, :characterization)).to be_present
       expect(json.dig(:gene_bank, :duplicate)).to be_present
+
+      expect(PacketCount.count).to eq(1)
     end
   end
 end
