@@ -25,6 +25,16 @@ module Api
         )
       end
 
+      def export
+        seeds = SeedsQuery.new(current_user: current_user, params: query_params).run
+        exporter = SeedExporter.new(seeds: seeds, type: query_params['type'])
+        if exporter.valid?
+          render json: { blob: rails_blob_path(exporter.export, disposition: 'attachment')}
+        else
+          invalid_resource(exporter)
+        end
+      end
+
       def auto_complete
         seeds = SeedAutocompleteQuery.new(current_user: current_user, params: auto_complete_params).run
         cache_render SeedSerializer, seeds

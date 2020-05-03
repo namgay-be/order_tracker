@@ -31,7 +31,7 @@ describe 'Distribution Info', type: :request do
       put api_v1_distribution_info_path(distribution_info), params: params, headers: header_params(token: token)
       expect(status).to eq(200)
       expect(json.dig(:distribution_info, :quantity)).to eq(15)
-      expect(active_collection.reload.packets).to eq(7)
+      expect(active_collection.reload.packets).to eq(17)
     end
   end
 

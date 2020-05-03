@@ -8,6 +8,8 @@ class ForeignSeedSerializer < ApplicationSerializer
     :genus,
     :family,
     :species,
+    :resistant,
+    :susceptible,
     :sub_texa,
     :material_type,
     :classification,

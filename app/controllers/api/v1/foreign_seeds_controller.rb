@@ -40,6 +40,8 @@ module Api
           :family,
           :species,
           :sub_texa,
+          :resistant,
+          :susceptible,
           :material_type,
           :classification,
           :characteristics,
@@ -49,8 +51,6 @@ module Api
             repatriation_date
             quantity
             initial_germination_rate
-            resistant
-            susceptible
             condition
             donor_accession
             donor_name

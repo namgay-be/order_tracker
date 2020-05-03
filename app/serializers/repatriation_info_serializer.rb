@@ -7,8 +7,6 @@ class RepatriationInfoSerializer < ApplicationSerializer
     :repatriation_date,
     :quantity,
     :initial_germination_rate,
-    :resistant,
-    :susceptible,
     :condition,
     :donor_accession,
     :donor_name,

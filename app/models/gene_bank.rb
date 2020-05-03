@@ -26,4 +26,8 @@ class GeneBank < ApplicationRecord
     :regeneration_packets,
     to: :base_collection
   )
+
+  def transfer_date
+    self.created_at.strftime('%d/%m/%Y')
+  end
 end
