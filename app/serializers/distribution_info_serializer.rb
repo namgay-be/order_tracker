@@ -12,4 +12,6 @@ class DistributionInfoSerializer < ApplicationSerializer
     :purpose,
     :remarks
   )
+
+  serialize :locations, with: LocationSerializer
 end

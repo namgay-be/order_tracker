@@ -23,7 +23,12 @@ describe 'Distribution Info', type: :request do
           package_type: :duplicate,
           quantity: 11,
           purpose: 'Some purpose',
-          remarks: 'Some remarks'
+          remarks: 'Some remarks',
+          locations_attributes: [
+            {
+              name: 'some locations'
+            }
+          ]
         }
       }
     end

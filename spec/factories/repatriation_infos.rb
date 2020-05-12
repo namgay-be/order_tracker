@@ -4,8 +4,6 @@ FactoryBot.define do
     repatriation_date { DateTime.current }
     quantity { 12 }
     initial_germination_rate { 12 }
-    resistant { 'very resistant' }
-    susceptible { 'very susceptible' }
     condition { 'very condition' }
     donor_accession { 'some accession' }
     donor_name { 'human donor' }

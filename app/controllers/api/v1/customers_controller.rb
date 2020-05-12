@@ -23,6 +23,11 @@ module Api
         head :no_content
       end
 
+      def auto_complete
+        customers = CustomerAutoCompleteQuery.new(current_user: current_user, params: query_params).run
+        cache_render CustomerSerializer, customers
+      end
+
       private
 
       def customer
@@ -49,7 +54,7 @@ module Api
       end
 
       def query_params
-        params.permit(:query)
+        params.permit(:query, :name)
       end
     end
   end

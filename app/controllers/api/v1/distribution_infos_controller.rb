@@ -45,7 +45,12 @@ module Api
           :package_type,
           :quantity,
           :purpose,
-          :remarks
+          :remarks,
+          locations_attributes: %i[
+            id
+            name
+            _destroy
+          ]
         )
       end
     end

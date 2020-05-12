@@ -29,7 +29,7 @@ module Api
         seeds = SeedsQuery.new(current_user: current_user, params: query_params).run
         exporter = SeedExporter.new(seeds: seeds, type: query_params['type'])
         if exporter.valid?
-          render json: { blob: rails_blob_path(exporter.export, disposition: 'attachment')}
+          render json: { blob: rails_blob_path(exporter.export, disposition: 'attachment') }
         else
           invalid_resource(exporter)
         end

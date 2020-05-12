@@ -21,6 +21,7 @@ Rails.application.routes.draw do
       resources :donor_infos, only: :index
       resources :donor_field_infos, only: :index
       resources :repatriation_infos, only: :index
+      resources :locations, only: :index
       resources :foreign_seeds
       resources :test_details
       resources :gene_banks
@@ -29,7 +30,9 @@ Rails.application.routes.draw do
           put :soft_delete
         end
       end
-      resources :customers
+      resources :customers do
+        get :auto_complete, on: :collection
+      end
       resources :distribution_infos
     end
   end
