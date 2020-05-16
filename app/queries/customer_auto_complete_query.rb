@@ -8,6 +8,9 @@ class CustomerAutoCompleteQuery < ApplicationQuery
     organisation
     status
     address
+    email
+    country
+    contact_number
    ].freeze
 
   def run
