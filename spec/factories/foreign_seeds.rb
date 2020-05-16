@@ -7,6 +7,5 @@ FactoryBot.define do
     sub_texa { 'foreign sub texa' }
     material_type { 'foreign material type' }
     classification { 'foreign classification' }
-    characteristics { 'foreign characteristics' }
   end
 end

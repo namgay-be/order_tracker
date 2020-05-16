@@ -8,6 +8,9 @@ class CustomerSerializer < ApplicationSerializer
     :designation,
     :organisation,
     :status,
-    :address
+    :address,
+    :contact_number,
+    :email,
+    :country
   )
 end

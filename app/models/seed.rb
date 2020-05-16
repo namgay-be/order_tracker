@@ -24,18 +24,19 @@ class Seed < ApplicationRecord
 
   validates :classification, :crop_name, presence: true
 
-  enum seed_status: {under_process: 0, tested: 5, transferred: 10, rejected: 20}
+  enum seed_status: { under_process: 0, tested: 5, transferred: 10, distributed: 15, rejected: 20 }
 
+  default_scope -> { order(created_at: :asc) }
   scope :local, -> { where(type: nil) }
   scope :by_type, ->(type) { where(type: type) }
   scope :by_crop_name, ->(crop_name) { where(crop_name: crop_name) }
-  scope :by_local_name, ->(local_name) { joins(:seed_info).where(seed_infos: {local_name: local_name}) }
-  scope :by_local_variety, ->(local_variety) { joins(:seed_info).where(seed_infos: {local_variety_name: local_variety}) }
+  scope :by_local_name, ->(local_name) { joins(:seed_info).where(seed_infos: { local_name: local_name }) }
+  scope :by_local_variety, ->(local_variety) { joins(:seed_info).where(seed_infos: { local_variety_name: local_variety }) }
   scope :by_seed_status, ->(seed_status) { where(seed_status: seed_status) }
   scope :by_classification, ->(classification) { where(classification: classification) }
-  scope :by_donor_name, ->(donor) { joins(:donor_info).where(donor_infos: {donor_name: donor}) }
-  scope :by_dzongkhag, ->(dzongkhag) { joins(:donor_info).where(donor_infos: {dzongkhag: dzongkhag}) }
-  scope :by_gewog, ->(gewog) { joins(:donor_info).where(donor_infos: {gewog: gewog}) }
+  scope :by_donor_name, ->(donor) { joins(:donor_info).where(donor_infos: { donor_name: donor }) }
+  scope :by_dzongkhag, ->(dzongkhag) { joins(:donor_info).where(donor_infos: { dzongkhag: dzongkhag }) }
+  scope :by_gewog, ->(gewog) { joins(:donor_info).where(donor_infos: { gewog: gewog }) }
   scope :by_minimum_altitude, ->(altitude) { joins(:donor_field_info).where('donor_field_infos.altitude > :q', q: altitude) }
   scope :by_maximum_altitude, ->(altitude) { joins(:donor_field_info).where('donor_field_infos.altitude < :q', q: altitude) }
   scope :by_requires_multiplication, ->(flag) { where(requires_multiplication: flag) }
@@ -47,6 +48,10 @@ class Seed < ApplicationRecord
     :duplicate,
     to: :gene_bank
   )
+
+  def unique_identifier
+    type == 'ForeignSeed' ? repatriation_info.repatriation_number : collection_info&.collection_number
+  end
 
   pg_search_scope :search_by_name, lambda { |name_part, query|
     {

@@ -10,8 +10,14 @@ class DistributionInfoSerializer < ApplicationSerializer
     :package_type,
     :quantity,
     :purpose,
-    :remarks
+    :remarks,
+    :date_stored,
+    :unique_identifier
   )
 
   serialize :locations, with: LocationSerializer
+
+  def date_stored
+    format_date(model.created_at)
+  end
 end

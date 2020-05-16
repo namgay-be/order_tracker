@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :seeds do
         get :auto_complete, on: :collection
+        get :list, on: :collection
         post :export, on: :collection
       end
       resources :seed_infos, only: :index

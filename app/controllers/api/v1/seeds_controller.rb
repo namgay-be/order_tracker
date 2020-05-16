@@ -40,6 +40,13 @@ module Api
         cache_render SeedSerializer, seeds
       end
 
+      def list
+        render_paginated_collection(
+          SeedsListQuery.new(current_user: current_user, params: query_params).run,
+          SeedListSerializer
+        )
+      end
+
       private
 
       def seed
@@ -89,7 +96,6 @@ module Api
           :susceptible,
           :crop_name,
           :seed_status,
-          :characteristics,
           :requires_multiplication,
           collection_info_attributes: %i[
             id

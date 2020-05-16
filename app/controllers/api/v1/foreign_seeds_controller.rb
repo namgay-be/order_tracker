@@ -44,7 +44,6 @@ module Api
           :susceptible,
           :material_type,
           :classification,
-          :characteristics,
           repatriation_info_attributes: %i[
             id
             repatriation_number

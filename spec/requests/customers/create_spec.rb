@@ -12,7 +12,9 @@ describe 'Customer', type: :request do
           designation: 'engineer',
           organisation: 'DragonCoders',
           status: 'Some status',
-          address: 'Chubachu'
+          address: 'Chubachu',
+          email: 'some@email.com',
+          contact_number: '17628748'
         }
       }
     end

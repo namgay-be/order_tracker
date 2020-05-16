@@ -12,8 +12,7 @@ class ForeignSeedSerializer < ApplicationSerializer
     :susceptible,
     :sub_texa,
     :material_type,
-    :classification,
-    :characteristics
+    :classification
   )
 
   serialize :repatriation_info, with: RepatriationInfoSerializer

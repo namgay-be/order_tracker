@@ -2,6 +2,8 @@ module Api
   module V1
     class DistributionInfosController < ApplicationController
       def index
+        distributions = DistributionInfoQuery.new(current_user: current_user, params: query_params).run
+        cache_render DistributionInfoSerializer, distributions
       end
 
       def show
@@ -52,6 +54,10 @@ module Api
             _destroy
           ]
         )
+      end
+
+      def query_params
+        params.permit(:query, :package_type)
       end
     end
   end
