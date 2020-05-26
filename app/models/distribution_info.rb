@@ -21,7 +21,7 @@ class DistributionInfo < ApplicationRecord
   default_scope -> { order(created_at: :desc) }
 
   def self.search(query)
-    joins(:customer, :seed).where(
+    joins(:customer, seed: :gene_bank).where(
       "CONCAT_WS(
         ' ',
         package_type,
@@ -29,7 +29,8 @@ class DistributionInfo < ApplicationRecord
         customers.name,
         customers.country,
         customers.status,
-        customers.organisation
+        customers.organisation,
+        gene_banks.accession_number
         ) iLIKE :query",
       query: "%#{query&.squish}%")
   end

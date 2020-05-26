@@ -7,7 +7,7 @@ FactoryBot.define do
     species { 'species1' }
     sub_texa { 'sub_texa1' }
     material_type { 'material1' }
-    classification { 'classification1' }
+    classification { 'vegetable' }
     resistant { 'resistant1' }
     susceptible { 'susceptible1' }
   end

@@ -36,6 +36,7 @@ module Api
         params.require(:gene_bank).permit(
           :id,
           :seed_id,
+          :accession_number,
           :packaging_date,
           base_collection_attributes: [
             :germination_weight,

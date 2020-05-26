@@ -25,7 +25,7 @@ class GeneBankCreator < ApplicationForm
   def generate_accession_number
     return unless gene_bank.accession_number.nil?
 
-    gene_bank.update_column(:accession_number, "BTNSeed#{seed.id}")
+    gene_bank.update_column(:accession_number, "BTN#{seed.classification[0,3].upcase}#{seed.id}")
   end
 
   def transfer_seed

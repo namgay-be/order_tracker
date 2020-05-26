@@ -50,7 +50,13 @@ class Seed < ApplicationRecord
   )
 
   def unique_identifier
-    type == 'ForeignSeed' ? repatriation_info.repatriation_number : collection_info&.collection_number
+    if transferred?
+      gene_bank.accession_number
+    elsif type == 'ForeignSeed'
+      repatriation_info.repatriation_number
+    else
+      collection_info&.collection_number
+    end
   end
 
   pg_search_scope :search_by_name, lambda { |name_part, query|

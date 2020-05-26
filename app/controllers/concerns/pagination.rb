@@ -37,7 +37,7 @@ module Pagination
   end
 
   def seeds
-    case params[:duration]
+    case params['duration']
     when 'current_week'
       Seed.where('created_at > :q', q: Date.today.beginning_of_week)
     when 'current_month'

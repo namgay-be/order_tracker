@@ -5,7 +5,7 @@ describe 'Distribution Info', type: :request do
   let!(:token) { user_token(admin) }
   let!(:customer) { create(:customer) }
   let!(:seed) { create(:seed) }
-  let!(:gene_bank) { create(:gene_bank, seed: seed) }
+  let!(:gene_bank) { create(:gene_bank, seed: seed, accession_number: 'BTNSeed89') }
   let!(:active_collection) { create(:active_collection, gene_bank: gene_bank) }
   let!(:base_collection) { create(:base_collection, gene_bank: gene_bank) }
   let!(:location_1) { create(:location, locatable: base_collection) }
@@ -34,6 +34,12 @@ describe 'Distribution Info', type: :request do
   context 'with search queries' do
     it 'searches records by search query' do
       get api_v1_distribution_infos_path, params: { query: 'namgay'}, headers: header_params(token: token)
+      expect(status).to eq(200)
+      expect(json.dig(:distribution_infos).size).to eq(1)
+    end
+
+    it 'searches records by search query 2' do
+      get api_v1_distribution_infos_path, params: { query: '89'}, headers: header_params(token: token)
       expect(status).to eq(200)
       expect(json.dig(:distribution_infos).size).to eq(1)
     end
