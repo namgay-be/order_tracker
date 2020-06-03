@@ -14,7 +14,6 @@ class CryoSerializer < ApplicationSerializer
     :resistant,
     :susceptible,
     :seed_status,
-    :characteristics,
     :requires_multiplication
   )
 

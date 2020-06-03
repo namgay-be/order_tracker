@@ -2,8 +2,10 @@ module Api
   module V1
     class DistributionInfosController < ApplicationController
       def index
-        distributions = DistributionInfoQuery.new(current_user: current_user, params: query_params).run
-        cache_render DistributionInfoSerializer, distributions
+        render_paginated_collection(
+          DistributionInfoQuery.new(current_user: current_user, params: query_params).run,
+          DistributionInfoSerializer
+        )
       end
 
       def show

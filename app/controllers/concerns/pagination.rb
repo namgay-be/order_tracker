@@ -13,7 +13,7 @@ module Pagination
 
   def render_paginated_collection(resource, serializer = nil, root = nil)
     config, collection = paginated_collection(resource)
-    cache_render serializer, collection, meta: paginate(config).merge(status_counts), collection: true
+    cache_render serializer, collection, meta: metadata(config, resource), collection: true
   end
 
   def paginated_collection(resource)
@@ -22,6 +22,10 @@ module Pagination
       page: params.fetch(:page, 1),
       items: params.fetch(:per_page, 10)
     )
+  end
+
+  def metadata(config, resource)
+    resource.take.is_a?(Seed) ? paginate(config).merge(status_counts) : paginate(config)
   end
 
   def status_counts
