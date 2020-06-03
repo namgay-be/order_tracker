@@ -1,5 +1,5 @@
 class SeedsQuery < ApplicationQuery
-  SEED_TYPES = %w[Seed ForeignSeed Cryo].freeze
+  SEED_TYPES = %w[ForeignSeed Cryo].freeze
 
   attr_accessor(
     :query,
@@ -56,7 +56,7 @@ class SeedsQuery < ApplicationQuery
       :donor_field_info,
       :cultivation_info,
       :collection_info
-    ).local
+    ).by_type(seed_type)
   end
 
   def foreign_seeds
@@ -130,6 +130,6 @@ class SeedsQuery < ApplicationQuery
   end
 
   def seed_type
-    type.presence_in(SEED_TYPES) || 'Seed'
+    type.presence_in(SEED_TYPES)
   end
 end
