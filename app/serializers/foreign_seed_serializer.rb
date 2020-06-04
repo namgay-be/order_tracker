@@ -16,4 +16,6 @@ class ForeignSeedSerializer < ApplicationSerializer
   )
 
   serialize :repatriation_info, with: RepatriationInfoSerializer
+  serialize :test_details, with: TestDetailSerializer
+  serialize :gene_bank, with: GeneBankSerializer
 end
