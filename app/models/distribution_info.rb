@@ -18,6 +18,8 @@ class DistributionInfo < ApplicationRecord
 
   accepts_nested_attributes_for :locations, allow_destroy: true
 
+  delegate :name, to: :customer, prefix: true
+
   default_scope -> { order(created_at: :desc) }
 
   def self.search(query)
@@ -38,4 +40,6 @@ class DistributionInfo < ApplicationRecord
   delegate :unique_identifier, to: :seed
 
   scope :by_package, -> (package) { where(package_type: package) }
+  scope :by_customer, -> (id) { joins(:customer).where(customers: { id: id })}
+  scope :by_seed, -> (id) { joins(:seed).where(seeds: { id: id })}
 end

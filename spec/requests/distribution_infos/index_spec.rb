@@ -51,5 +51,17 @@ describe 'Distribution Info', type: :request do
       expect(status).to eq(200)
       expect(json.dig(:distribution_infos).size).to eq(1)
     end
+
+    it 'filters by seed' do
+      get api_v1_distribution_infos_path, params: { seed_id: seed.id }, headers: header_params(token: token)
+      expect(status).to eq(200)
+      expect(json.dig(:distribution_infos).size).to eq(1)
+    end
+
+    it 'filters by customer' do
+      get api_v1_distribution_infos_path, params: { customer_id: customer.id }, headers: header_params(token: token)
+      expect(status).to eq(200)
+      expect(json.dig(:distribution_infos).size).to eq(1)
+    end
   end
 end

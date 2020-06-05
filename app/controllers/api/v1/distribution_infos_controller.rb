@@ -59,7 +59,7 @@ module Api
       end
 
       def query_params
-        params.permit(:query, :package_type)
+        params.permit(:query, :package_type, :customer_id, :seed_id)
       end
     end
   end

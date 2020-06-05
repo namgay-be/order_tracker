@@ -12,6 +12,7 @@ class DistributionInfoSerializer < ApplicationSerializer
     :purpose,
     :remarks,
     :date_stored,
+    :customer_name,
     :unique_identifier
   )
 

@@ -12,6 +12,7 @@ class ForeignSeedSerializer < ApplicationSerializer
     :susceptible,
     :sub_texa,
     :material_type,
+    :seed_status,
     :classification
   )
 
