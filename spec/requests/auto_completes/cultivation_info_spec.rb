@@ -3,15 +3,15 @@ require 'rails_helper'
 describe 'Cultivation Info', type: :request do
   let!(:admin) { create(:user, role_id: Role.first.id) }
   let!(:token) { user_token(admin) }
-  let!(:seed_1) { create(:seed) }
+  let!(:seed_1) { create(:seed, creator: admin) }
   let!(:cultivation_info) { create(:cultivation_info, nursery_month: 'jan', seed: seed_1) }
-  let!(:seed_2) { create(:seed) }
+  let!(:seed_2) { create(:seed, creator: admin) }
   let!(:cultivation_info_2) { create(:cultivation_info, seed: seed_2) }
-  let!(:seed_3) { create(:seed) }
+  let!(:seed_3) { create(:seed, creator: admin) }
   let!(:cultivation_info_3) { create(:cultivation_info, seed: seed_3) }
-  let!(:seed_4) { create(:seed) }
+  let!(:seed_4) { create(:seed, creator: admin) }
   let!(:cultivation_info_4) { create(:cultivation_info, seed: seed_4) }
-  let!(:seed_5) { create(:seed) }
+  let!(:seed_5) { create(:seed, creator: admin) }
   let!(:cultivation_info_5) { create(:cultivation_info, cultivation_practice: 'normal', seed: seed_5) }
 
   context 'with dynamic search queries' do

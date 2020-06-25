@@ -3,6 +3,7 @@ class ForeignSeedCreator < ApplicationForm
 
   def create
     @foreign_seed = ForeignSeed.new(params)
+    @foreign_seed.assign_attributes(creator: current_user)
     @foreign_seed.save
   end
 end

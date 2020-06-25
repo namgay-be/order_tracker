@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :donor_info do
     donor_name { 'donor1' }
-    house_number { 'house1' }
+    house_number { Faker::Number.normal }
     dzongkhag { 'thimphu1' }
     gewog { 'gewog1' }
     dungkhag { 'dungkhag1' }

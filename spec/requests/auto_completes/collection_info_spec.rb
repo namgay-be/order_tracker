@@ -3,15 +3,15 @@ require 'rails_helper'
 describe 'Collection Info', type: :request do
   let!(:admin) { create(:user, role_id: Role.first.id) }
   let!(:token) { user_token(admin) }
-  let!(:seed_1) { create(:seed) }
+  let!(:seed_1) { create(:seed, creator: admin) }
   let!(:collection_info) { create(:collection_info, seed: seed_1) }
-  let!(:seed_2) { create(:seed) }
+  let!(:seed_2) { create(:seed, creator: admin) }
   let!(:collection_info_2) { create(:collection_info, collection_number: 'new_number', seed: seed_2) }
-  let!(:seed_3) { create(:seed) }
+  let!(:seed_3) { create(:seed, creator: admin) }
   let!(:collection_info_3) { create(:collection_info, collection_number: 'new_number_2', seed: seed_3) }
-  let!(:seed_4) { create(:seed) }
+  let!(:seed_4) { create(:seed, creator: admin) }
   let!(:collection_info_4) { create(:collection_info, collection_number: 'new_number_3', seed: seed_4) }
-  let!(:seed_5) { create(:seed) }
+  let!(:seed_5) { create(:seed, creator: admin) }
   let!(:collection_info_5) {
     create(:collection_info, collection_number: 'new_number_4', collectors_name: 'john',
       seed: seed_5)

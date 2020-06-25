@@ -3,9 +3,9 @@ require 'rails_helper'
 describe 'Seed Info' do
   let!(:admin) { create(:user, role_id: Role.first.id) }
   let!(:token) { user_token(admin) }
-  let!(:seed_1) { create(:foreign_seed) }
+  let!(:seed_1) { create(:foreign_seed, creator: admin) }
   let!(:repatriation_info_1) { create(:repatriation_info, repatriation_number: 'abc123', foreign_seed: seed_1) }
-  let!(:seed_2) { create(:foreign_seed) }
+  let!(:seed_2) { create(:foreign_seed, creator: admin) }
   let!(:repatriation_info_2) { create(:repatriation_info, organisation: 'Selise', foreign_seed: seed_2) }
 
   context 'with dynamic search queries' do

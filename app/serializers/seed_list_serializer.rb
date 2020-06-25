@@ -4,8 +4,12 @@ class SeedListSerializer < ApplicationSerializer
   serialize(
     :id,
     :type,
+    :crop_name,
     :seed_status,
     :unique_identifier,
-    :classification
+    :classification,
+    :family,
+    :creation_date,
+    :creator_name
   )
 end

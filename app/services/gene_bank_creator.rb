@@ -3,6 +3,7 @@ class GeneBankCreator < ApplicationForm
 
   def create
     @gene_bank = GeneBank.new(params)
+    @gene_bank.assign_attributes(creator: current_user)
     @gene_bank.save.tap do |result|
       result && track_count && generate_accession_number && transfer_seed
     end

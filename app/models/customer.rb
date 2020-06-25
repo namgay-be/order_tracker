@@ -1,6 +1,7 @@
 class Customer < ApplicationRecord
   include PgSearch::Model
 
+  belongs_to :creator, class_name: 'User'
   has_many :distribution_infos, inverse_of: :customer, dependent: :nullify
 
   validates_presence_of :name

@@ -14,7 +14,9 @@ class CryoSerializer < ApplicationSerializer
     :resistant,
     :susceptible,
     :seed_status,
-    :requires_multiplication
+    :requires_multiplication,
+    :creator_name,
+    :creation_date
   )
 
   serialize :collection_info, with: CollectionInfoSerializer
@@ -23,4 +25,5 @@ class CryoSerializer < ApplicationSerializer
   serialize :donor_field_info, with: DonorFieldInfoSerializer
   serialize :seed_info, with: SeedInfoSerializer
   serialize :test_details, with: TestDetailSerializer
+  serialize :gene_bank, with: GeneBankSerializer
 end

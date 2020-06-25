@@ -11,6 +11,8 @@ class CustomerSerializer < ApplicationSerializer
     :address,
     :contact_number,
     :email,
-    :country
+    :country,
+    :creator_name,
+    :creation_date
   )
 end

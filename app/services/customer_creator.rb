@@ -3,6 +3,7 @@ class CustomerCreator < ApplicationForm
 
   def create
     @customer = Customer.new(params)
+    @customer.assign_attributes(creator: current_user)
     @customer.save.tap { set_cust_id }
   end
 

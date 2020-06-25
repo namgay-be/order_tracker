@@ -3,6 +3,7 @@ class DistributionInfoCreator < ApplicationForm
 
   def create
     @distribution_info = DistributionInfo.new(params)
+    @distribution_info.assign_attributes(creator: current_user)
     @distribution_info.save.tap do |result|
       result && after_save_actions
     end

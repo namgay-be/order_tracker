@@ -3,7 +3,7 @@ require 'rails_helper'
 describe 'GeneBank', type: :request do
   let!(:admin) { create(:user, role_id: Role.first.id) }
   let!(:token) { user_token(admin) }
-  let!(:seed) { create(:seed, seed_status: :tested) }
+  let!(:seed) { create(:seed, seed_status: :tested, creator: admin) }
 
   context 'with valid params' do
     let!(:params) {

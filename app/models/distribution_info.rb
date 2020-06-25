@@ -1,6 +1,7 @@
 class DistributionInfo < ApplicationRecord
   belongs_to :customer, inverse_of: :distribution_infos
   belongs_to :seed, inverse_of: :distribution_infos
+  belongs_to :creator, class_name: 'User'
   has_many :locations, as: :locatable, dependent: :destroy
 
   enum package_type: {

@@ -1,5 +1,6 @@
 class GeneBank < ApplicationRecord
   belongs_to :seed, inverse_of: :gene_bank
+  belongs_to :creator, class_name: 'User'
 
   has_one :base_collection, inverse_of: :gene_bank, dependent: :destroy
   has_one :active_collection, inverse_of: :gene_bank, dependent: :destroy

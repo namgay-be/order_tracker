@@ -8,5 +8,7 @@ class DonorInfoSerializer < ApplicationSerializer
     :gewog,
     :dungkhag,
     :village,
+    :creator_name,
+    :creation_date
   )
 end

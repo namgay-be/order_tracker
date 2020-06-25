@@ -5,7 +5,9 @@ class GeneBankSerializer < ApplicationSerializer
     :id,
     :seed_id,
     :accession_number,
-    :packaging_date
+    :packaging_date,
+    :creator_name,
+    :creation_date
   )
 
   serialize :base_collection, with: BaseCollectionSerializer

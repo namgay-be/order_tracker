@@ -3,10 +3,12 @@ class Seed < ApplicationRecord
   include Klass::Seed
   include AASM
 
+  belongs_to :donor_info, inverse_of: :seeds, optional: true
+  belongs_to :creator, class_name: 'User'
+
   has_one :collection_info, inverse_of: :seed, dependent: :destroy
   has_one :cultivation_info, inverse_of: :seed, dependent: :destroy
   has_one :donor_field_info, inverse_of: :seed, dependent: :destroy
-  has_one :donor_info, inverse_of: :seed, dependent: :destroy
   has_one :seed_info, inverse_of: :seed, dependent: :destroy
   has_one :gene_bank, inverse_of: :seed
 
@@ -16,7 +18,6 @@ class Seed < ApplicationRecord
   accepts_nested_attributes_for(
     :seed_info,
     :donor_field_info,
-    :donor_info,
     :collection_info,
     :cultivation_info,
     allow_destroy: true

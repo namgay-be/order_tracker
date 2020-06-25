@@ -3,9 +3,9 @@ require 'rails_helper'
 describe 'Seed Info' do
   let!(:admin) { create(:user, role_id: Role.first.id) }
   let!(:token) { user_token(admin) }
-  let!(:seed_3) { create(:seed) }
+  let!(:seed_3) { create(:seed, creator: admin) }
   let!(:seed_info_3) { create(:seed_info, local_name: 'localo', seed: seed_3) }
-  let!(:seed_4) { create(:seed) }
+  let!(:seed_4) { create(:seed, creator: admin) }
   let!(:seed_info_4) { create(:seed_info, local_variety_name: 'varieto', seed: seed_4) }
 
   context 'with dynamic search queries' do

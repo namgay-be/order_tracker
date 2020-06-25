@@ -13,7 +13,9 @@ class DistributionInfoSerializer < ApplicationSerializer
     :remarks,
     :date_stored,
     :customer_name,
-    :unique_identifier
+    :unique_identifier,
+    :creator_name,
+    :creation_date
   )
 
   serialize :locations, with: LocationSerializer

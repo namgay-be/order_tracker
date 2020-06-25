@@ -8,6 +8,8 @@ class TestDetailSerializer < ApplicationSerializer
     :moisture_content,
     :moisture_date,
     :date_stored,
-    :remarks
+    :remarks,
+    :creator_name,
+    :creation_date
   )
 end

@@ -3,6 +3,7 @@ class SeedCreator < ApplicationForm
 
   def create
     @seed = Seed.new(params)
+    @seed.assign_attributes(creator: current_user)
     seed.save
   end
 end

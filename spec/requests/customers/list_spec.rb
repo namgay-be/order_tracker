@@ -3,9 +3,9 @@ require 'rails_helper'
 describe 'Customer', type: :request do
   let!(:admin) { create(:user, role_id: Role.first.id) }
   let!(:token) { user_token(admin) }
-  let!(:customer) { create(:customer) }
-  let!(:customer_2) { create(:customer, name: 'new name', cust_id: 'CUS_10') }
-  let!(:customer_3) { create(:customer, name: 'different name', cust_id: 'Cus11') }
+  let!(:customer) { create(:customer, creator: admin) }
+  let!(:customer_2) { create(:customer, name: 'new name', cust_id: 'CUS_10', creator: admin) }
+  let!(:customer_3) { create(:customer, name: 'different name', cust_id: 'Cus11', creator: admin) }
 
   context 'without search filters' do
     it 'lists all customers' do

@@ -19,7 +19,7 @@ Rails.application.routes.draw do
       resources :seed_infos, only: :index
       resources :collection_infos, only: :index
       resources :cultivation_infos, only: :index
-      resources :donor_infos, only: :index
+      resources :donor_infos
       resources :donor_field_infos, only: :index
       resources :repatriation_infos, only: :index
       resources :locations, only: :index

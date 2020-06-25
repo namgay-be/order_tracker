@@ -3,9 +3,9 @@ require 'rails_helper'
 describe 'Seed' do
   let!(:admin) { create(:user, role_id: Role.first.id) }
   let!(:token) { user_token(admin) }
-  let!(:seed_1) { create(:seed, crop_name: 'croppo') }
-  let!(:seed_2) { create(:seed, classification: 'something') }
-  let!(:seed_5) { create(:seed, seed_status: 'tested') }
+  let!(:seed_1) { create(:seed, crop_name: 'croppo', creator: admin) }
+  let!(:seed_2) { create(:seed, classification: 'something', creator: admin) }
+  let!(:seed_5) { create(:seed, seed_status: 'tested', creator: admin) }
 
   context 'with dynamic search queries' do
     it 'searches by crop name', crop: true do

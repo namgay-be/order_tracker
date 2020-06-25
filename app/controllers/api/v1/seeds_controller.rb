@@ -21,7 +21,7 @@ module Api
       def index
         render_paginated_collection(
           SeedsQuery.new(current_user: current_user, params: query_params).run,
-          SeedSerializer
+          SeedListSerializer
         )
       end
 
@@ -97,6 +97,7 @@ module Api
           :crop_name,
           :seed_status,
           :requires_multiplication,
+          :donor_info_id,
           collection_info_attributes: %i[
             id
             mission_number
@@ -124,15 +125,6 @@ module Api
             soil_color
             soil_texture
             topography
-          ],
-          donor_info_attributes: %i[
-            id
-            donor_name
-            house_number
-            dzongkhag
-            gewog
-            dungkhag
-            village
           ],
           seed_info_attributes: %i[
             id

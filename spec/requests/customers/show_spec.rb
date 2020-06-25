@@ -3,7 +3,7 @@ require 'rails_helper'
 describe 'Customer', type: :request do
   let!(:admin) { create(:user, role_id: Role.first.id) }
   let!(:token) { user_token(admin) }
-  let!(:customer) { create(:customer) }
+  let!(:customer) { create(:customer, creator: admin) }
 
   it 'fetches the customer' do
     get api_v1_customer_path(customer), params: {}, headers: header_params(token: token)

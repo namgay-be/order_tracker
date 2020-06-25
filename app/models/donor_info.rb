@@ -1,7 +1,8 @@
 class DonorInfo < ApplicationRecord
   include PgSearch::Model
 
-  belongs_to :seed, inverse_of: :donor_info
+  belongs_to :creator, class_name: 'User'
+  has_many :seeds, inverse_of: :donor_info
 
   validates :house_number, :donor_name, presence: true
 

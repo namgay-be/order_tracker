@@ -13,7 +13,9 @@ class ForeignSeedSerializer < ApplicationSerializer
     :sub_texa,
     :material_type,
     :seed_status,
-    :classification
+    :classification,
+    :creator_name,
+    :creation_date
   )
 
   serialize :repatriation_info, with: RepatriationInfoSerializer

@@ -3,6 +3,7 @@ require 'rails_helper'
 describe 'Seed', type: :request do
   let!(:admin) { create(:user, role_id: Role.first.id) }
   let!(:token) { user_token(admin) }
+  let!(:donor_info) { create(:donor_info, creator: admin)}
 
   context 'with valid params' do
     let!(:params) {
@@ -18,6 +19,7 @@ describe 'Seed', type: :request do
           resistant: 'resistant1',
           susceptible: 'susceptible1',
           seed_status: 'under_process',
+          donor_info_id: donor_info.id,
           collection_info_attributes: {
             mission_number: 'mission1',
             collection_number: 'number1',
@@ -42,14 +44,6 @@ describe 'Seed', type: :request do
             soil_color: 'culture1',
             soil_texture: 'texture1',
             topography: 'topography1'
-          },
-          donor_info_attributes: {
-            donor_name: 'donor1',
-            house_number: 'house1',
-            dzongkhag: 'thimphu1',
-            gewog: 'gewog1',
-            dungkhag: 'dungkhag1',
-            village: 'village1'
           },
           seed_info_attributes: {
             local_name: 'local1',
