@@ -22,7 +22,6 @@ class CryoSerializer < ApplicationSerializer
   serialize :collection_info, with: CollectionInfoSerializer
   serialize :cultivation_info, with: CultivationInfoSerializer
   serialize :donor_info, with: DonorInfoSerializer
-  serialize :donor_field_info, with: DonorFieldInfoSerializer
   serialize :seed_info, with: SeedInfoSerializer
   serialize :test_details, with: TestDetailSerializer
   serialize :gene_bank, with: GeneBankSerializer

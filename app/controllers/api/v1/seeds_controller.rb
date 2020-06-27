@@ -117,15 +117,6 @@ module Api
             characteristics
             requires_multiplication
           ],
-          donor_field_info_attributes: %i[
-            id
-            latitude
-            longitude
-            altitude
-            soil_color
-            soil_texture
-            topography
-          ],
           seed_info_attributes: %i[
             id
             local_name

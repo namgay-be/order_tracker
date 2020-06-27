@@ -8,6 +8,12 @@ class DonorInfoQuery < ApplicationQuery
     gewog
     dungkhag
     village
+    latitude
+    longitude
+    altitude
+    soil_color
+    soil_texture
+    topography
    ].freeze
 
   def run

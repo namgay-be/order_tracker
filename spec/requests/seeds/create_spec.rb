@@ -37,14 +37,6 @@ describe 'Seed', type: :request do
             characteristics: 'adomakmd madlmfasm kmakslfmd',
             requires_multiplication: true
           },
-          donor_field_info_attributes: {
-            latitude: '12klj43kj',
-            longitude: '23423gf',
-            altitude: '213sfsg',
-            soil_color: 'culture1',
-            soil_texture: 'texture1',
-            topography: 'topography1'
-          },
           seed_info_attributes: {
             local_name: 'local1',
             local_variety_name: 'variety1',

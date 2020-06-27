@@ -11,7 +11,13 @@ describe 'Donor Info', type: :request do
         dzongkhag: 'thimphu1',
         gewog: 'gewog1',
         dungkhag: 'dungkhag1',
-        village: 'village1'
+        village: 'village1',
+        latitude: '12klj43kj',
+        longitude: '23423gf',
+        altitude: '213sfsg',
+        soil_color: 'culture1',
+        soil_texture: 'texture1',
+        topography: 'topography1'
       }
     }
   end

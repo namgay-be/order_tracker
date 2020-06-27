@@ -44,7 +44,13 @@ module Api
           :dzongkhag,
           :gewog,
           :village,
-          :dungkhag
+          :dungkhag,
+          :latitude,
+          :longitude,
+          :altitude,
+          :soil_color,
+          :soil_texture,
+          :texture
         )
       end
 

@@ -53,7 +53,6 @@ class SeedsQuery < ApplicationQuery
     Seed.includes(
       :seed_info,
       :donor_info,
-      :donor_field_info,
       :cultivation_info,
       :collection_info
     ).by_type(seed_type)

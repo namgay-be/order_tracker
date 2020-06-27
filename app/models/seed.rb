@@ -8,7 +8,6 @@ class Seed < ApplicationRecord
 
   has_one :collection_info, inverse_of: :seed, dependent: :destroy
   has_one :cultivation_info, inverse_of: :seed, dependent: :destroy
-  has_one :donor_field_info, inverse_of: :seed, dependent: :destroy
   has_one :seed_info, inverse_of: :seed, dependent: :destroy
   has_one :gene_bank, inverse_of: :seed
 
@@ -17,7 +16,6 @@ class Seed < ApplicationRecord
 
   accepts_nested_attributes_for(
     :seed_info,
-    :donor_field_info,
     :collection_info,
     :cultivation_info,
     allow_destroy: true
@@ -38,8 +36,8 @@ class Seed < ApplicationRecord
   scope :by_donor_name, ->(donor) { joins(:donor_info).where(donor_infos: { donor_name: donor }) }
   scope :by_dzongkhag, ->(dzongkhag) { joins(:donor_info).where(donor_infos: { dzongkhag: dzongkhag }) }
   scope :by_gewog, ->(gewog) { joins(:donor_info).where(donor_infos: { gewog: gewog }) }
-  scope :by_minimum_altitude, ->(altitude) { joins(:donor_field_info).where('donor_field_infos.altitude > :q', q: altitude) }
-  scope :by_maximum_altitude, ->(altitude) { joins(:donor_field_info).where('donor_field_infos.altitude < :q', q: altitude) }
+  scope :by_minimum_altitude, ->(altitude) { joins(:donor_info).where('donor_infos.altitude > :q', q: altitude) }
+  scope :by_maximum_altitude, ->(altitude) { joins(:donor_info).where('donor_infos.altitude < :q', q: altitude) }
   scope :by_requires_multiplication, ->(flag) { where(requires_multiplication: flag) }
 
   delegate(

@@ -8,6 +8,12 @@ class CreateDonorInfos < ActiveRecord::Migration[6.0]
       t.string :gewog
       t.string :dungkhag
       t.string :village
+      t.decimal :latitude, precision: 10, scale: 3
+      t.decimal :longitude, precision: 10, scale: 3
+      t.decimal :altitude, precision: 10, scale: 3
+      t.string :soil_color
+      t.string :soil_texture
+      t.string :topography
 
       t.timestamps
     end

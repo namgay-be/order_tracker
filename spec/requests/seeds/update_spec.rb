@@ -6,7 +6,6 @@ describe 'Seed', type: :request do
   let!(:donor_info) { create(:donor_info, creator: admin) }
   let!(:seed) { create(:seed, donor_info: donor_info, creator: admin) }
   let!(:collection_info) { create(:collection_info, seed: seed) }
-  let!(:donor_field_info) { create(:donor_field_info, seed: seed) }
   let!(:cultivation_info) { create(:cultivation_info, seed: seed) }
   let!(:seed_info) { create(:seed_info, seed: seed) }
 
@@ -42,15 +41,6 @@ describe 'Seed', type: :request do
             crop_system: 'crop2',
             characteristics: 'adomakmd madlmfasm kmakslfmd',
             requires_multiplication: true
-          },
-          donor_field_info_attributes: {
-            id: donor_field_info.id,
-            latitude: 'new asdfkj',
-            longitude: 'new 23423gf',
-            altitude: 'new 213sfsg',
-            soil_color: 'new culture2',
-            soil_texture: 'new texture2',
-            topography: 'topography2',
           },
           seed_info_attributes: {
             id: seed_info.id,

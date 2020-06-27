@@ -8,6 +8,12 @@ class DonorInfoSerializer < ApplicationSerializer
     :gewog,
     :dungkhag,
     :village,
+    :latitude,
+    :longitude,
+    :altitude,
+    :soil_color,
+    :soil_texture,
+    :topography,
     :creator_name,
     :creation_date
   )
