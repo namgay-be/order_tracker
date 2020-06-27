@@ -14,6 +14,7 @@ class CreateDonorInfos < ActiveRecord::Migration[6.0]
       t.string :soil_color
       t.string :soil_texture
       t.string :topography
+      t.string :custom_donor_id, index: true, unique: true
 
       t.timestamps
     end

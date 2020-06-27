@@ -34,7 +34,8 @@ describe 'Distribution Info', type: :request do
       :distribution_info,
       customer: customer_2,
       seed: seed_2,
-      creator: admin
+      creator: admin,
+      purpose: 'ultimate purpose'
     )
   }
 
@@ -77,6 +78,14 @@ describe 'Distribution Info', type: :request do
       get api_v1_distribution_infos_path, params: { customer_id: customer.id }, headers: header_params(token: token)
       expect(status).to eq(200)
       expect(json.dig(:distribution_infos).size).to eq(1)
+    end
+  end
+
+  context 'for purpose autocomplete' do
+    it 'searches distribution info by purpose attribute' do
+      get auto_complete_api_v1_distribution_infos_path,
+          params: { name: 'purpose', query: 'ultimate'}, headers: header_params(token: token)
+      expect(status).to eq(200)
     end
   end
 end

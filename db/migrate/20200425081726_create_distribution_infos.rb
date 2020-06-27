@@ -9,6 +9,7 @@ class CreateDistributionInfos < ActiveRecord::Migration[6.0]
       t.integer :quantity
       t.text :purpose
       t.text :remarks
+      t.boolean :finalized, default: false, null: false
 
       t.timestamps
     end

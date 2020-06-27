@@ -14,6 +14,7 @@ class DonorInfoQuery < ApplicationQuery
     soil_color
     soil_texture
     topography
+    custom_donor_id
    ].freeze
 
   def run

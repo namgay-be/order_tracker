@@ -25,6 +25,20 @@ module Api
         head :no_content
       end
 
+      def auto_complete
+        distribution_infos = DistributionAutoCompleteQuery.new(
+          current_user: current_user, params: autocomplete_params).run
+        cache_render DistributionInfoSerializer, distribution_infos
+      end
+
+      def finalize
+        if DistributionInfoFinalizer.new(current_user: current_user, params: finalize_params).run
+          render json: { message: 'success' }
+        else
+          render json: { message: 'failed', status: 400 }
+        end
+      end
+
       private
 
       def distribution_info
@@ -60,6 +74,14 @@ module Api
 
       def query_params
         params.permit(:query, :package_type, :customer_id, :seed_id)
+      end
+
+      def autocomplete_params
+        params.permit(:query, :name)
+      end
+
+      def finalize_params
+        params.require(:distribution_info).permit(distribution_ids: [])
       end
     end
   end

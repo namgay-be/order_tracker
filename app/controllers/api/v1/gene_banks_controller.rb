@@ -18,6 +18,14 @@ module Api
         head :no_content
       end
 
+      def unique_accession
+        if AccessionUniquenessChecker.new(current_user: current_user, params: uniqueness_params).run
+          render json: { unique: false }
+        else
+          render json: { unique: true }
+        end
+      end
+
       private
 
       def gene_bank
@@ -79,6 +87,10 @@ module Api
             ]
           ]
         )
+      end
+
+      def uniqueness_params
+        params.permit(:query)
       end
     end
   end

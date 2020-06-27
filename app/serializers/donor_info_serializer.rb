@@ -14,6 +14,7 @@ class DonorInfoSerializer < ApplicationSerializer
     :soil_color,
     :soil_texture,
     :topography,
+    :custom_donor_id,
     :creator_name,
     :creation_date
   )

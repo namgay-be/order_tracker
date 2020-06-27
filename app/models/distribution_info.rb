@@ -1,4 +1,6 @@
 class DistributionInfo < ApplicationRecord
+  include PgSearch::Model
+
   belongs_to :customer, inverse_of: :distribution_infos
   belongs_to :seed, inverse_of: :distribution_infos
   belongs_to :creator, class_name: 'User'
@@ -43,4 +45,14 @@ class DistributionInfo < ApplicationRecord
   scope :by_package, -> (package) { where(package_type: package) }
   scope :by_customer, -> (id) { joins(:customer).where(customers: { id: id })}
   scope :by_seed, -> (id) { joins(:seed).where(seeds: { id: id })}
+
+  pg_search_scope :search_by_name, lambda { |name_part, query|
+    {
+      against: name_part,
+      query: query,
+      using: {
+        tsearch: { prefix: true }
+      }
+    }
+  }
 end

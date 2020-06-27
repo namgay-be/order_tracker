@@ -20,12 +20,13 @@ Rails.application.routes.draw do
       resources :collection_infos, only: :index
       resources :cultivation_infos, only: :index
       resources :donor_infos
-      resources :donor_field_infos, only: :index
       resources :repatriation_infos, only: :index
       resources :locations, only: :index
       resources :foreign_seeds
       resources :test_details
-      resources :gene_banks
+      resources :gene_banks do
+        get :unique_accession, on: :collection
+      end
       resources :users do
         member do
           put :soft_delete
@@ -34,7 +35,10 @@ Rails.application.routes.draw do
       resources :customers do
         get :auto_complete, on: :collection
       end
-      resources :distribution_infos
+      resources :distribution_infos do
+        get :auto_complete, on: :collection
+        post :finalize, on: :collection
+      end
     end
   end
 end
