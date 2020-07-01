@@ -15,4 +15,10 @@ class DonorInfo < ApplicationRecord
       }
     }
   }
+
+  after_create :save_custom_donor_id
+
+  def save_custom_donor_id
+    self.update(custom_donor_id: "DONOR_#{id}")
+  end
 end

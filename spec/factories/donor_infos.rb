@@ -12,5 +12,6 @@ FactoryBot.define do
     soil_color { 'culture1' }
     soil_texture { 'texture1' }
     topography { 'topography1' }
+    custom_donor_id { 'DONOR_1'}
   end
 end

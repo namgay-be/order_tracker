@@ -49,8 +49,7 @@ module Api
           :longitude,
           :altitude,
           :soil_color,
-          :soil_texture,
-          :texture
+          :soil_texture
         )
       end
 

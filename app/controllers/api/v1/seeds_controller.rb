@@ -47,6 +47,11 @@ module Api
         )
       end
 
+      def parse_excel
+        seeds = ExcelParser.new(current_user: current_user, params: excel_params).run
+        cache_render SeedListSerializer, seeds
+      end
+
       private
 
       def seed
@@ -115,7 +120,6 @@ module Api
             cultivation_practice
             crop_system
             characteristics
-            requires_multiplication
           ],
           seed_info_attributes: %i[
             id
@@ -124,6 +128,10 @@ module Api
             sample_status
           ]
         )
+      end
+
+      def excel_params
+        params.require(:seed).permit(:name, :file)
       end
     end
   end
