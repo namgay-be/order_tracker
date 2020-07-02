@@ -16,6 +16,7 @@ Rails.application.routes.draw do
         get :list, on: :collection
         post :export, on: :collection
         post :parse_excel, on: :collection
+        get :templates, on: :collection
       end
       resources :seed_infos, only: :index
       resources :collection_infos, only: :index

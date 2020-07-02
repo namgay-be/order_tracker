@@ -52,6 +52,10 @@ module Api
         cache_render SeedListSerializer, seeds
       end
 
+      def templates
+        send_file(Rails.root.join('lib', 'templates', "#{file_type}_seed_template.xlsx"))
+      end
+
       private
 
       def seed
@@ -132,6 +136,10 @@ module Api
 
       def excel_params
         params.require(:seed).permit(:name, :file)
+      end
+
+      def file_type
+        params[:file].presence_in(%w[local cryo foreign]) || 'local'
       end
     end
   end
