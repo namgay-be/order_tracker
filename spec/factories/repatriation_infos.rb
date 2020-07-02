@@ -10,7 +10,7 @@ FactoryBot.define do
     country { 'India' }
     organisation { 'some organisation' }
     web_url { 'some web url' }
-    email_id { 'some email id' }
+    email_id { 'nt@gmail.com' }
     phone { '12093243' }
     fax { 'some fax' }
     remarks { 'some remarks' }
