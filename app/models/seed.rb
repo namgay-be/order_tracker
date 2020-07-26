@@ -58,6 +58,17 @@ class Seed < ApplicationRecord
     end
   end
 
+  def seed_type
+    case type
+    when 'ForeignSeed'
+      'Foreign Seed'
+    when 'Cryo'
+      'Cryo'
+    else
+      'Local Seed'
+    end
+  end
+
   pg_search_scope :search_by_name, lambda { |name_part, query|
     {
       against: name_part,
@@ -72,6 +83,7 @@ class Seed < ApplicationRecord
     state :under_process, initial: true
     state :tested
     state :transferred
+    state :distributed
     state :rejected
 
     event :test do
@@ -80,6 +92,10 @@ class Seed < ApplicationRecord
 
     event :transfer do
       transitions from: :tested, to: :transferred
+    end
+
+    event :distribute do
+      transitions from: :transferred, to: :distributed
     end
 
     event :reject do

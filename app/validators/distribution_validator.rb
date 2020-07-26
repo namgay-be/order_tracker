@@ -3,21 +3,21 @@ class DistributionValidator < ActiveModel::EachValidator
 
     case record.package_type
     when 'duplicate'
-      errors(record) if record.seed.duplicate.packets < value
+      errors(record) if (record.seed.duplicate.weight < value || record.seed.duplicate.weight < 20)
     when 'characterization'
-      errors(record) if record.seed.characterization.packets < value
+      errors(record) if (record.seed.characterization.weight < value || record.seed.characterization.weight < 20)
     when 'active_collection'
-      errors(record) if record.seed.active_collection.packets < value
+      errors(record) if (record.seed.active_collection.weight < value || record.seed.active_collection.weight < 20)
     when 'rest'
-      errors(record) if record.seed.base_collection.rest_packets < value
+      errors(record) if (record.seed.base_collection.rest_weight < value || record.seed.base_collection.rest_weight < 20)
     when 'germination'
-      errors(record) if record.seed.base_collection.germination_packets < value
+      errors(record) if (record.seed.base_collection.germination_weight < value || record.seed.base_collection.germination_weight < 20)
     when 'regeneration'
-      errors(record) if record.seed.base_collection.regeneration_packets < value
+      errors(record) if (record.seed.base_collection.regeneration_weight < value || record.seed.base_collection.regeneration_weight < 20)
     end
   end
 
   def errors(record)
-    record.errors.add(:quantity, 'entered is more than the available packets for the packet type')
+    record.errors.add(:quantity, 'entered is more than the available amount for the packet type or the available amount is below 20g')
   end
 end

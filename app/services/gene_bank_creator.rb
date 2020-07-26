@@ -4,8 +4,8 @@ class GeneBankCreator < ApplicationForm
   def create
     @gene_bank = GeneBank.new(params)
     @gene_bank.assign_attributes(creator: current_user)
-    @gene_bank.save.tap do |result|
-      result && track_count && generate_accession_number && transfer_seed
+    @gene_bank.transaction do
+      @gene_bank.save && track_count && generate_accession_number && transfer_seed
     end
   end
 
@@ -14,12 +14,12 @@ class GeneBankCreator < ApplicationForm
   def track_count
     PacketCount.create(
       gene_bank_id: gene_bank.id,
-      germination_count: gene_bank.germination_packets,
-      regeneration_count: gene_bank.regeneration_packets,
-      rest_count: gene_bank.rest_packets,
-      active_collection_count: gene_bank.active_collection_packets,
-      characterization_count: gene_bank.characterization_packets,
-      duplicate_count: gene_bank.duplicate_packets
+      germination_count: gene_bank.germination_weight,
+      regeneration_count: gene_bank.regeneration_weight,
+      rest_count: gene_bank.rest_weight,
+      active_collection_count: gene_bank.active_collection_weight,
+      characterization_count: gene_bank.characterization_weight,
+      duplicate_count: gene_bank.duplicate_weight
     )
   end
 
@@ -30,7 +30,7 @@ class GeneBankCreator < ApplicationForm
   end
 
   def transfer_seed
-    seed.may_transfer? && seed.transfer!
+    seed.transfer!
   end
 
   def seed

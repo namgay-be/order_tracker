@@ -15,20 +15,20 @@ class DistributionInfoUpdater < DistributionInfoCreator
   def after_update_actions
     case distribution_info.package_type
     when 'duplicate'
-      seed.duplicate.update(packets: ((seed.duplicate.packets + old_quantity) - distribution_info.quantity))
+      seed.duplicate.update(weight: ((seed.duplicate.weight + old_quantity) - distribution_info.quantity))
     when 'active_collection'
-      seed.active_collection.update(packets: ((seed.active_collection.packets + old_quantity) - distribution_info.quantity))
+      seed.active_collection.update(weight: ((seed.active_collection.weight + old_quantity) - distribution_info.quantity))
     when 'germination'
-      seed.base_collection.update(germination_packets:
-                                    ((seed.base_collection.germination_packets + old_quantity) - distribution_info.quantity))
+      seed.base_collection.update(germination_weight:
+                                    ((seed.base_collection.germination_weight + old_quantity) - distribution_info.quantity))
     when 'regeneration'
-      seed.base_collection.update(regeneration_packets:
-                                    ((seed.base_collection.regeneration_packets + old_quantity) - distribution_info.quantity))
+      seed.base_collection.update(regeneration_weight:
+                                    ((seed.base_collection.regeneration_weight + old_quantity) - distribution_info.quantity))
     when 'rest'
-      seed.base_collection.update(rest_packets:
-                                    ((seed.base_collection.rest_packets + old_quantity) - distribution_info.quantity))
+      seed.base_collection.update(rest_weight:
+                                    ((seed.base_collection.rest_weight + old_quantity) - distribution_info.quantity))
     when 'characterization'
-      seed.characterization.update(packets: ((seed.characterization.packets + old_quantity) - distribution_info.quantity))
+      seed.characterization.update(weight: ((seed.characterization.weight + old_quantity) - distribution_info.quantity))
     end
   end
 end

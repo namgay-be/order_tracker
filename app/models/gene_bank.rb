@@ -18,13 +18,13 @@ class GeneBank < ApplicationRecord
 
   validates_presence_of :packaging_date
 
-  delegate :packets, to: :active_collection, prefix: true
-  delegate :packets, to: :characterization, prefix: true
-  delegate :packets, to: :duplicate, prefix: true
+  delegate :weight, to: :active_collection, prefix: true
+  delegate :weight, to: :characterization, prefix: true
+  delegate :weight, to: :duplicate, prefix: true
   delegate(
-    :germination_packets,
-    :rest_packets,
-    :regeneration_packets,
+    :germination_weight,
+    :rest_weight,
+    :regeneration_weight,
     to: :base_collection
   )
 

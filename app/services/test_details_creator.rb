@@ -4,8 +4,8 @@ class TestDetailsCreator < ApplicationForm
   def create
     @test_detail = TestDetail.new(params)
     @test_detail.assign_attributes(creator: current_user)
-    @test_detail.save.tap do |result|
-      result && seed.may_test? && seed.test!
+    @test_detail.transaction do
+      test_detail.save && seed.test!
     end
   end
 

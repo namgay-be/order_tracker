@@ -22,7 +22,7 @@ class SeedExporter
     seeds.each_with_index do |seed, index|
       row_index = index + 1
       sheet.add_cell(row_index, 0, seed.id)
-      sheet.add_cell(row_index, 1, seed.type)
+      sheet.add_cell(row_index, 1, seed.seed_type)
       sheet.add_cell(row_index, 2, seed.seed_status)
       sheet.add_cell(row_index, 3, seed.gene_bank&.accession_number)
       sheet.add_cell(row_index, 4, 'collection_rep')
@@ -95,7 +95,7 @@ class SeedExporter
     seeds.each_with_index do |seed, index|
       row_index = index + 1
       sheet.add_cell(row_index, 0, seed.id)
-      sheet.add_cell(row_index, 1, seed.type)
+      sheet.add_cell(row_index, 1, seed.seed_type)
       sheet.add_cell(row_index, 2, seed.seed_status)
       sheet.add_cell(row_index, 3, seed.gene_bank&.accession_number)
       sheet.add_cell(row_index, 4, 'collection_rep')

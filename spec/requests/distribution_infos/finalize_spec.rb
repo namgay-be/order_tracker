@@ -4,7 +4,7 @@ describe 'Distribution Info', type: :request do
   let!(:admin) { create(:user, role_id: Role.first.id) }
   let!(:token) { user_token(admin) }
   let!(:customer) { create(:customer, creator: admin) }
-  let!(:seed) { create(:seed, creator: admin) }
+  let!(:seed) { create(:seed, creator: admin, seed_status: :transferred) }
   let!(:gene_bank) { create(:gene_bank, seed: seed, accession_number: 'BTNSeed89', creator: admin) }
   let!(:active_collection) { create(:active_collection, gene_bank: gene_bank) }
   let!(:base_collection) { create(:base_collection, gene_bank: gene_bank) }
