@@ -9,8 +9,13 @@ class UserSerializer < ApplicationSerializer
     :username,
     :designation,
     :image_path,
-    :deleted_at
+    :deleted_at,
+    :invitation_accepted
   )
+
+  def invitation_accepted
+    model.invitation_accepted?
+  end
 
   def image_path
     return nil if model.image&.attachment.nil?

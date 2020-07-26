@@ -32,7 +32,7 @@ describe 'Foreign Seed', type: :request do
             country: 'india',
             organisation: 'some organisation',
             web_url: 'some web url',
-            email_id: 'some email id',
+            email_id: 'namgay@gmail.com',
             phone: 'some phone',
             fax: 'some fax',
             remarks: 'some remarks'

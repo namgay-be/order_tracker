@@ -20,13 +20,17 @@ module Api
       end
 
       def soft_delete
-        update_user_form(user_updater)
+        update_user_form(user_deleter)
       end
 
       private
 
       def user_updater
-        UserUpdater.new(current_user: current_user, params: send("#{action_name}_params"))
+        UserUpdater.new(current_user: current_user, params: update_params)
+      end
+
+      def user_deleter
+        UserDeleter.new(current_user: current_user, params: soft_delete_params)
       end
 
       def user

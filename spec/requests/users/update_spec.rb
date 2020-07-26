@@ -16,7 +16,7 @@ describe 'User', type: :request do
   }
 
   it 'updates a user' do
-    put api_v1_user_path(moderator), params: params, headers: header_params(token: token)
+    put api_v1_user_path(admin), params: params, headers: header_params(token: token)
     expect(status).to eq(200)
     expect(json.dig(:user, :email)).to eq('new@dcpl.bt')
   end

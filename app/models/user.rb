@@ -19,5 +19,7 @@ class User < ApplicationRecord
 
   delegate :name, to: :role, prefix: true
 
+  validates :phone, numericality: true, length: { minimum: 6, maximum: 16 }
+  
   default_scope { where(deleted_at: nil) }
 end
