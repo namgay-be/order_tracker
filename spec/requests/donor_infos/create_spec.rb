@@ -8,8 +8,7 @@ describe 'Donor Info', type: :request do
       donor_info: {
         donor_name: 'donor1',
         house_number: 'house1',
-        dzongkhag: 'thimphu1',
-        gewog: 'gewog1',
+        gewog_id: Gewog.first.id,
         dungkhag: 'dungkhag1',
         village: 'village1',
         latitude: '12klj43kj',

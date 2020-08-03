@@ -36,6 +36,7 @@ module Pagination
       distributed_count: seeds.distributed.size,
       rejected_count: seeds.rejected.size,
       local_seed_count: seeds.local.size,
+      cryo_count: seeds.by_type('Cryo').size,
       repatriation_seed_count: seeds.by_type('ForeignSeed').size
     }
   end

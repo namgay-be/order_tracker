@@ -61,8 +61,7 @@ class LocalSeedExcelParser < ApplicationForm
     DonorInfo.create!(
       donor_name: seed_data[11]&.value,
       house_number: seed_data[12]&.value,
-      dzongkhag: seed_data[13]&.value,
-      gewog: seed_data[14]&.value,
+      gewog_id: gewog_name(seed_data),
       dungkhag: seed_data[15]&.value,
       village: seed_data[16]&.value,
       latitude: seed_data[17]&.value,
@@ -73,5 +72,10 @@ class LocalSeedExcelParser < ApplicationForm
       topography: seed_data[22]&.value,
       creator_id: current_user.id,
     )
+  end
+
+  def gewog_name(seed_data)
+    gewog = Gewog.find_by(name: seed_data[14]&.value)
+    gewog&.id
   end
 end

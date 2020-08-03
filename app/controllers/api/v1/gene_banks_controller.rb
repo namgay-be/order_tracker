@@ -26,6 +26,12 @@ module Api
         end
       end
 
+      def auto_complete
+        gene_bank_infos = GeneBankAutoCompleteQuery.new(
+          current_user: current_user, params: autocomplete_params).run
+        cache_render GeneBankSerializer, gene_bank_infos
+      end
+
       private
 
       def gene_bank
@@ -91,6 +97,10 @@ module Api
 
       def uniqueness_params
         params.permit(:query)
+      end
+
+      def autocomplete_params
+        params.permit(:query, :name)
       end
     end
   end

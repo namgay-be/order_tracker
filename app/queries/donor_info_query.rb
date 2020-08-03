@@ -4,8 +4,6 @@ class DonorInfoQuery < ApplicationQuery
   PERMITTED_ATTRIBUTES = %w[
     donor_name
     house_number
-    dzongkhag
-    gewog
     dungkhag
     village
     latitude

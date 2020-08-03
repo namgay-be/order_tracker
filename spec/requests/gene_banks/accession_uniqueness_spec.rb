@@ -25,4 +25,10 @@ describe 'GeneBank', type: :request do
     expect(status).to eq(200)
     expect(json.dig('unique')).to eq(true)
   end
+
+  it 'lists gene bank infos' do
+    get auto_complete_api_v1_gene_banks_path, params: { query: 'BTNSeed102'}, headers: header_params(token: token)
+    expect(status).to eq(200)
+    expect(json.dig('gene_banks')).to be_present
+  end
 end

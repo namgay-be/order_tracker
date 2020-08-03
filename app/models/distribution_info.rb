@@ -12,10 +12,11 @@ class DistributionInfo < ApplicationRecord
     germination: 2,
     regeneration: 3,
     rest: 4,
-    characterization: 5
+    characterization: 5,
+    user_sample: 6
   }
 
-  validates_presence_of :supplied_date, :requested_date, :package_type, :purpose, :quantity
+  # validates_presence_of :supplied_date, :requested_date, :package_type, :purpose, :quantity
   validates :quantity, distribution: true
   validates_numericality_of :quantity, greater_than: 0
 

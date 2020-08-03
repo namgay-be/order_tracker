@@ -56,6 +56,17 @@ module Api
         send_file(Rails.root.join('lib', 'templates', "#{file_type}_seed_template.xlsx"))
       end
 
+      def batch_delete
+        seeds = Seed.where(id: seed_id_params[:seed_ids])
+        seeds.destroy_all
+        head :no_content
+      end
+
+      def disqualify
+        seed.reject!
+        cache_render SeedSerializer, seed
+      end
+
       private
 
       def seed
@@ -129,7 +140,6 @@ module Api
             id
             local_name
             local_variety_name
-            sample_status
           ]
         )
       end
@@ -140,6 +150,10 @@ module Api
 
       def file_type
         params[:file].presence_in(%w[local cryo foreign]) || 'local'
+      end
+
+      def seed_id_params
+        params.permit(seed_ids: [])
       end
     end
   end

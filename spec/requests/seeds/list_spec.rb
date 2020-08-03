@@ -29,13 +29,13 @@ describe 'Seed', type: :request do
   let!(:cultivation_info_2) { create(:cultivation_info, seed: seed_2) }
   let!(:seed_info_2) { create(:seed_info, seed: seed_2) }
 
-  let!(:donor_info_3) { create(:donor_info, gewog: 'thimthrom', creator: admin) }
+  let!(:donor_info_3) { create(:donor_info, creator: admin) }
   let!(:seed_3) { create(:seed, donor_info: donor_info_3, creator: admin) }
   let!(:collection_info_3) { create(:collection_info, collection_number: 'new_number_2', seed: seed_3) }
   let!(:cultivation_info_3) { create(:cultivation_info, seed: seed_3) }
   let!(:seed_info_3) { create(:seed_info, local_name: 'localo', seed: seed_3) }
 
-  let!(:donor_info_4) { create(:donor_info, dzongkhag: 'thimphu', creator: admin) }
+  let!(:donor_info_4) { create(:donor_info, creator: admin) }
   let!(:seed_4) { create(:seed, donor_info: donor_info_4, creator: admin) }
   let!(:collection_info_4) { create(:collection_info, collection_number: 'new_number_3', seed: seed_4) }
   let!(:cultivation_info_4) { create(:cultivation_info, seed: seed_4) }

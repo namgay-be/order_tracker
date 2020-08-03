@@ -7,9 +7,9 @@ describe 'Donor Info', type: :request do
   let!(:seed_1) { create(:seed, donor_info: donor_info, creator: admin) }
   let!(:donor_info_2) { create(:donor_info, house_number: 'house123', creator: admin) }
   let!(:seed_2) { create(:seed, donor_info: donor_info_2, creator: admin) }
-  let!(:donor_info_3) { create(:donor_info, gewog: 'thimthrom', creator: admin) }
+  let!(:donor_info_3) { create(:donor_info, creator: admin) }
   let!(:seed_3) { create(:seed, donor_info: donor_info_3, creator: admin) }
-  let!(:donor_info_4) { create(:donor_info, dzongkhag: 'thimphu', creator: admin) }
+  let!(:donor_info_4) { create(:donor_info, creator: admin) }
   let!(:seed_4) { create(:seed, donor_info: donor_info_4, creator: admin) }
   let!(:donor_info_5) { create(:donor_info, donor_name: 'john', creator: admin) }
   let!(:seed_5) { create(:seed, donor_info: donor_info_5, creator: admin) }

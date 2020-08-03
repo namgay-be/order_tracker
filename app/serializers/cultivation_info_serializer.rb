@@ -8,6 +8,5 @@ class CultivationInfoSerializer < ApplicationSerializer
     :cultivation_practice,
     :crop_system,
     :characteristics,
-    :requires_multiplication,
-  )
+    )
 end

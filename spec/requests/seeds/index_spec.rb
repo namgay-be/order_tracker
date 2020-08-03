@@ -22,13 +22,13 @@ describe 'Seed', type: :request do
   let!(:cultivation_info_2) { create(:cultivation_info, seed: seed_2) }
   let!(:seed_info_2) { create(:seed_info, seed: seed_2) }
 
-  let!(:donor_info_3) { create(:donor_info, gewog: 'thimthrom', creator: admin) }
+  let!(:donor_info_3) { create(:donor_info, gewog: Gewog.second, creator: admin) }
   let!(:seed_3) { create(:seed, donor_info: donor_info_3, creator: admin) }
   let!(:collection_info_3) { create(:collection_info, collection_number: 'new_number_2', seed: seed_3) }
   let!(:cultivation_info_3) { create(:cultivation_info, seed: seed_3) }
   let!(:seed_info_3) { create(:seed_info, local_name: 'localo', seed: seed_3) }
 
-  let!(:donor_info_4) { create(:donor_info, dzongkhag: 'thimphu', creator: admin) }
+  let!(:donor_info_4) { create(:donor_info, gewog: Gewog.last, creator: admin) }
   let!(:seed_4) { create(:seed, donor_info: donor_info_4, creator: admin) }
   let!(:collection_info_4) { create(:collection_info, collection_number: 'new_number_3', seed: seed_4) }
   let!(:cultivation_info_4) { create(:cultivation_info, seed: seed_4) }
@@ -117,19 +117,19 @@ describe 'Seed', type: :request do
     end
 
     it 'filters by dzongkhag', dzongkhag: true do
-      get api_v1_seeds_path, params: { dzongkhag: 'thimphu' }, headers: header_params(token: token)
+      get api_v1_seeds_path, params: { dzongkhag: 'Chhukha' }, headers: header_params(token: token)
       expect(status).to eq(200)
       expect(json.dig(:seeds).size).to eq(1)
       seedo = Seed.find(json.dig(:seeds, 0, :id))
-      expect(seedo.donor_info.dzongkhag).to eq(donor_info_4.dzongkhag)
+      expect(seedo.donor_info.dzongkhag_name).to eq(donor_info_4.dzongkhag_name)
     end
 
     it 'filters by gewog', gewog: true do
-      get api_v1_seeds_path, params: { gewog: 'thimthrom' }, headers: header_params(token: token)
+      get api_v1_seeds_path, params: { gewog: 'Chummy' }, headers: header_params(token: token)
       expect(status).to eq(200)
       expect(json.dig(:seeds).size).to eq(1)
       seedo = Seed.find(json.dig(:seeds, 0, :id))
-      expect(seedo.donor_info.gewog).to eq(donor_info_3.gewog)
+      expect(seedo.donor_info.gewog_name).to eq(donor_info_3.gewog_name)
     end
 
     it 'filters by type of seed', seed_type: true do

@@ -4,7 +4,7 @@ class Seed < ApplicationRecord
   include AASM
 
   belongs_to :donor_info, inverse_of: :seeds, optional: true
-  belongs_to :creator, class_name: 'User'
+  belongs_to :creator, class_name: 'User', optional: true
 
   has_one :collection_info, inverse_of: :seed, dependent: :destroy
   has_one :cultivation_info, inverse_of: :seed, dependent: :destroy
@@ -21,7 +21,7 @@ class Seed < ApplicationRecord
     allow_destroy: true
   )
 
-  validates :classification, :crop_name, presence: true
+#  validates :classification, :crop_name, presence: true
 
   enum seed_status: { under_process: 0, tested: 5, transferred: 10, distributed: 15, rejected: 20 }
 
@@ -34,8 +34,8 @@ class Seed < ApplicationRecord
   scope :by_seed_status, ->(seed_status) { where(seed_status: seed_status) }
   scope :by_classification, ->(classification) { where(classification: classification) }
   scope :by_donor_name, ->(donor) { joins(:donor_info).where(donor_infos: { donor_name: donor }) }
-  scope :by_dzongkhag, ->(dzongkhag) { joins(:donor_info).where(donor_infos: { dzongkhag: dzongkhag }) }
-  scope :by_gewog, ->(gewog) { joins(:donor_info).where(donor_infos: { gewog: gewog }) }
+  scope :by_dzongkhag, ->(dzongkhag) { joins(donor_info: { gewog: :dzongkhag}).where(dzongkhags: { name: dzongkhag }) }
+  scope :by_gewog, ->(gewog) { joins(donor_info: :gewog).where(gewogs: { name: gewog}) }
   scope :by_minimum_altitude, ->(altitude) { joins(:donor_info).where('donor_infos.altitude > :q', q: altitude) }
   scope :by_maximum_altitude, ->(altitude) { joins(:donor_info).where('donor_infos.altitude < :q', q: altitude) }
   scope :by_requires_multiplication, ->(flag) { where(requires_multiplication: flag) }
@@ -99,7 +99,7 @@ class Seed < ApplicationRecord
     end
 
     event :reject do
-      transitions from: :tested, to: :rejected
+      transitions to: :rejected
     end
   end
 end

@@ -41,8 +41,7 @@ module Api
         params.require(:donor_info).permit(
           :donor_name,
           :house_number,
-          :dzongkhag,
-          :gewog,
+          :gewog_id,
           :village,
           :dungkhag,
           :latitude,

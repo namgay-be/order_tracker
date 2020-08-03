@@ -9,8 +9,6 @@ describe 'Donor Info', type: :request do
       donor_info: {
         donor_name: 'donor2',
         house_number: 'house1',
-        dzongkhag: 'thimphu1',
-        gewog: 'gewog1',
         dungkhag: 'dungkhag1',
         village: 'village1'
       }

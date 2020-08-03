@@ -1,0 +1,7 @@
+"user_id","username","password","name","designation","role"
+"1","Super Admin","123","Super Admin","Super Admin","Admin"
+"2","admin@gmail.com","202cb962ac59075b964b07152d234b70","Ugyen Phuntsho","Senior Bio Officer","Admin"
+"3","uglhadon@gmail.com","202cb962ac59075b964b07152d234b70","Ugyen Phuntsho","Senior Bio Officer","Data Interpreter"
+"4","wangtshering.nbc@gmail.com","202cb962ac59075b964b07152d234b70","Wang Tshering","Biodiversity Supervisor","Data Interpreter"
+"5","lhabtsherin@gmail.com","202cb962ac59075b964b07152d234b70","Lhab Tshering","Biodiversity Officer","Data Interpreter"
+"6","amtamang@moaf.gov.bt","202cb962ac59075b964b07152d234b70","Asta Maya Tamang","Principal Biodiversity Officer","Data Interpreter"

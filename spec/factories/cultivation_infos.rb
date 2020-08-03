@@ -6,6 +6,5 @@ FactoryBot.define do
     cultivation_practice { 'cultivation1' }
     crop_system { 'crop1' }
     characteristics { 'adomakmd madlmfasm kmakslfmd' }
-    requires_multiplication { true }
   end
 end

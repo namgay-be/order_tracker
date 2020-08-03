@@ -17,6 +17,8 @@ Rails.application.routes.draw do
         post :export, on: :collection
         post :parse_excel, on: :collection
         get :templates, on: :collection
+        delete :batch_delete, on: :collection
+        delete :disqualify, on: :member
       end
       resources :seed_infos, only: :index
       resources :collection_infos, only: :index
@@ -28,6 +30,7 @@ Rails.application.routes.draw do
       resources :test_details
       resources :gene_banks do
         get :unique_accession, on: :collection
+        get :auto_complete, on: :collection
       end
       resources :users do
         member do
@@ -41,6 +44,8 @@ Rails.application.routes.draw do
         get :auto_complete, on: :collection
         post :finalize, on: :collection
       end
+      resources :dzongkhags, only: :index
+      resources :gewogs, only: :index
     end
   end
 end
