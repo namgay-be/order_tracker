@@ -16,8 +16,8 @@ module Migrations
 
     def set_distribution(hash)
       ::DistributionInfo.new(
-        seed_id: ::GeneBank.find_by(accession_number: hash[:accession_no])&.seed_id ,
-        customer_id: hash[:customer_id],
+        seed_id: ::GeneBank.find_by(accession_number: hash[:accession_no])&.seed_id,
+        customer_id: customer_id(hash),
         requested_date: hash[:requested_date],
         supplied_date: hash[:supplied_date],
         package_type: package_type(hash),
@@ -30,11 +30,24 @@ module Migrations
     end
 
     def package_type(hash)
-      if hash[:packet_type] == 'User Sample'
+      case hash[:packet_type]
+      when 'User Sample'
         'user_sample'
+      when 'Characterization'
+        'characterization'
+      when 'Rest'
+        'rest'
+      when 'Multiplication and regeneration'
+        'regeneration'
+      when 'Germination and viability'
+        'germination'
       else
         hash[:packet_type]
       end
+    end
+
+    def customer_id(hash)
+      ::Customer.where('custom_ids && ?', "{#{hash[:customer_id]}}").take.id
     end
   end
 end
