@@ -25,7 +25,7 @@ class Seed < ApplicationRecord
 
   enum seed_status: { under_process: 0, tested: 5, transferred: 10, distributed: 15, rejected: 20 }
 
-  default_scope -> { order(created_at: :asc) }
+  default_scope -> { order(created_at: :desc) }
   scope :local, -> { where(type: nil) }
   scope :by_type, ->(type) { where(type: type) }
   scope :by_crop_name, ->(crop_name) { where(crop_name: crop_name) }
@@ -39,6 +39,7 @@ class Seed < ApplicationRecord
   scope :by_minimum_altitude, ->(altitude) { joins(:donor_info).where('donor_infos.altitude > :q', q: altitude) }
   scope :by_maximum_altitude, ->(altitude) { joins(:donor_info).where('donor_infos.altitude < :q', q: altitude) }
   scope :by_requires_multiplication, ->(flag) { where(requires_multiplication: flag) }
+  scope :by_banned, ->(flag) { where(banned: flag) }
 
   delegate(
     :active_collection,

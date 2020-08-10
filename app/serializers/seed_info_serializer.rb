@@ -3,6 +3,7 @@ class SeedInfoSerializer < ApplicationSerializer
   serialize(
     :id,
     :local_name,
-    :local_variety_name
+    :local_variety_name,
+    :sample_status
   )
 end

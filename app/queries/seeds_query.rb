@@ -14,7 +14,8 @@ class SeedsQuery < ApplicationQuery
     :type,
     :minimum_altitude,
     :maximum_altitude,
-    :requires_multiplication
+    :requires_multiplication,
+    :banned
   )
 
   def run
@@ -25,7 +26,6 @@ class SeedsQuery < ApplicationQuery
 
   def list_local_seeds
     local_seeds
-      .then { |seeds| fetch_by_crop_name(seeds) }
       .then { |seeds| fetch_by_local_variety(seeds) }
       .then { |seeds| fetch_by_local_name(seeds) }
       .then { |seeds| fetch_by_status(seeds) }
@@ -36,6 +36,7 @@ class SeedsQuery < ApplicationQuery
       .then { |seeds| fetch_by_minimum_altitude(seeds) }
       .then { |seeds| fetch_by_maximum_altitude(seeds) }
       .then { |seeds| fetch_by_requires_multiplication(seeds) }
+      .then { |seeds| fetch_by_banned(seeds) }
       .search(query)
   end
 
@@ -66,6 +67,12 @@ class SeedsQuery < ApplicationQuery
     return seeds if requires_multiplication.nil?
 
     seeds.by_requires_multiplication(requires_multiplication)
+  end
+
+  def fetch_by_banned(seeds)
+    return seeds if banned.nil?
+
+    seeds.by_banned(banned)
   end
 
   def fetch_by_minimum_altitude(seeds)

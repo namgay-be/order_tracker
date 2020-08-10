@@ -16,6 +16,7 @@ class SeedSerializer < ApplicationSerializer
     :seed_status,
     :requires_multiplication,
     :creator_name,
+    :banned,
     :creation_date
   )
 

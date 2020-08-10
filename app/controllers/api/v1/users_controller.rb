@@ -38,7 +38,7 @@ module Api
       end
 
       def update_params
-        params.require(:user).permit(:email, :designation, :phone, :name, :username, :image)
+        params.require(:user).permit(:email, :designation, :phone, :name, :username, :image, :role_id)
       end
 
       def soft_delete_params

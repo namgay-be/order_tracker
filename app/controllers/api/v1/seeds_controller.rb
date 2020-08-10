@@ -95,7 +95,8 @@ module Api
           :type,
           :minimum_altitude,
           :maximum_altitude,
-          :requires_multiplication
+          :requires_multiplication,
+          :banned
         )
       end
 
@@ -118,6 +119,7 @@ module Api
           :seed_status,
           :requires_multiplication,
           :donor_info_id,
+          :banned,
           collection_info_attributes: %i[
             id
             mission_number
@@ -140,6 +142,7 @@ module Api
             id
             local_name
             local_variety_name
+            sample_status
           ]
         )
       end

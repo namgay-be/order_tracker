@@ -156,6 +156,12 @@ describe 'Seed', type: :request do
       expect(status).to eq(200)
       expect(json.dig(:seeds).size).to eq(1)
     end
+
+    it 'filters by banned flag' do
+      get api_v1_seeds_path, params: { banned: true }, headers: header_params(token: token)
+      expect(status).to eq(200)
+      expect(json.dig(:seeds).size).to eq(0)
+    end
   end
 
   context 'with filters for foreign seeds' do
