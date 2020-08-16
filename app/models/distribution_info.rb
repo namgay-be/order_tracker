@@ -23,6 +23,7 @@ class DistributionInfo < ApplicationRecord
   accepts_nested_attributes_for :locations, allow_destroy: true
 
   delegate :name, to: :customer, prefix: true
+  delegate :seed_status, to: :seed
 
   default_scope -> { order(created_at: :desc) }
 

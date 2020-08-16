@@ -4,6 +4,7 @@ class DistributionInfoSerializer < ApplicationSerializer
   serialize(
     :id,
     :seed_id,
+    :seed_status,
     :customer_id,
     :requested_date,
     :supplied_date,
