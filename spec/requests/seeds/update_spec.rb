@@ -48,6 +48,19 @@ describe 'Seed', type: :request do
             local_variety_name: 'variety2',
             sample_status: 'status2'
           }
+        },
+        donor_info: {
+          donor_name: 'donor1',
+          house_number: 'house1',
+          gewog_id: Gewog.first.id,
+          dungkhag: 'dungkhag1',
+          village: 'village1',
+          latitude: '12klj43kj',
+          longitude: '23423gf',
+          altitude: '213sfsg',
+          soil_color: 'culture1',
+          soil_texture: 'texture1',
+          topography: 'topography1'
         }
       }
     }

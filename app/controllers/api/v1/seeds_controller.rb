@@ -74,11 +74,11 @@ module Api
       end
 
       def seed_updater
-        SeedUpdater.new(current_user: current_user, params: seed_params)
+        SeedUpdater.new(current_user: current_user, params: seed_params, donor_params: donor_info_params)
       end
 
       def seed_creator
-        SeedCreator.new(current_user: current_user, params: seed_params)
+        SeedCreator.new(current_user: current_user, params: seed_params, donor_params: donor_info_params)
       end
 
       def query_params
@@ -145,6 +145,25 @@ module Api
             sample_status
           ]
         )
+      end
+
+      def donor_info_params
+        if params['donor_info'].nil?
+          {}
+        else
+          params.require(:donor_info).permit(
+            :donor_name,
+            :house_number,
+            :gewog_id,
+            :village,
+            :dungkhag,
+            :latitude,
+            :longitude,
+            :altitude,
+            :soil_color,
+            :soil_texture
+          )
+        end
       end
 
       def excel_params
