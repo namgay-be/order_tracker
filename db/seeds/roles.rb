@@ -6,7 +6,15 @@ Role.destroy_all
   },
   {
     id: 2,
-    name: :moderator
+    name: :desuup
+  },
+  {
+    id: 3,
+    name: :store_owner
+  },
+  {
+    id: 4,
+    name: :commoner
   }
 ].each do |role|
   Role.create!(role)
