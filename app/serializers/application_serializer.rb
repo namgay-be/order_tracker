@@ -6,7 +6,7 @@ class ApplicationSerializer < CacheCrispies::Base
   end
 
   def format_time(time)
-    time&.strftime('%d/%m/%Y %H:%M:%S')
+    time&.strftime('%Y %d %b at %I:%M %p')
   end
 
   def creator_name
