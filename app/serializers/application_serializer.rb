@@ -16,4 +16,10 @@ class ApplicationSerializer < CacheCrispies::Base
   def creation_date
     format_time(model.created_at)
   end
+
+  def image_path
+    return nil if model.image&.attachment.nil?
+
+    rails_blob_path(model.image, only_path: true)
+  end
 end

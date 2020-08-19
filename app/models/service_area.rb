@@ -2,6 +2,7 @@ class ServiceArea < ApplicationRecord
   include PgSearch::Model
 
   has_one :address, as: :addressable, dependent: :destroy
+  has_many :stores, inverse_of: :service_area
   accepts_nested_attributes_for :address
 
   validates_presence_of :name

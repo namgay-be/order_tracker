@@ -47,6 +47,7 @@ Rails.application.routes.draw do
       resources :dzongkhags, only: :index
       resources :gewogs, only: :index
       resources :service_areas
+      resources :stores
     end
   end
 end

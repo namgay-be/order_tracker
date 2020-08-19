@@ -17,11 +17,5 @@ class UserSerializer < ApplicationSerializer
     model.invitation_accepted?
   end
 
-  def image_path
-    return nil if model.image&.attachment.nil?
-
-    rails_blob_path(model.image, only_path: true)
-  end
-
   serialize :role, with: RoleSerializer
 end
